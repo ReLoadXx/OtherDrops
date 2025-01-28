@@ -1,6 +1,7 @@
 package dev.reloadx.events;
 
 import dev.reloadx.config.ConfigManager;
+import dev.reloadx.items.CustomItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -9,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
 import java.util.Random;
 
 public class MobDeathListener implements Listener {
@@ -29,6 +31,8 @@ public class MobDeathListener implements Listener {
             String itemName = mobConfig.getString("item");
             int dropChance = mobConfig.getInt("chance", 0);
             boolean disableVanillaLoot = mobConfig.getBoolean("disable-vanilla-loot", false);
+            String customName = mobConfig.getString("custom-name");
+            List<String> lore = mobConfig.getStringList("lore");
 
             Material material = Material.matchMaterial(itemName);
             if (material == null) {
@@ -40,7 +44,12 @@ public class MobDeathListener implements Listener {
             }
 
             if (random.nextInt(100) + 1 <= dropChance) {
-                event.getDrops().add(new ItemStack(material));
+                ItemStack customItem = new CustomItemBuilder(material)
+                        .setName(customName)
+                        .setLore(lore)
+                        .build();
+
+                event.getDrops().add(customItem);
             }
         }
     }
