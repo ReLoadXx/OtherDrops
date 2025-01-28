@@ -2,9 +2,11 @@ mobs:
   ZOMBIE:
     item: DIAMOND
     chance: 70
+    disable-vanilla-loot: true
   SKELETON:
     item: EMERALD
     chance: 50
+    disable-vanilla-loot: false
   CREEPER:
     item: NETHER_STAR
     chance: 0.5
