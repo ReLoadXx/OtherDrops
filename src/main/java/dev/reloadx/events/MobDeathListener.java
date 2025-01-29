@@ -30,7 +30,7 @@ public class MobDeathListener implements Listener {
 
         if (mobConfig != null) {
             boolean disableVanillaLoot = mobConfig.getBoolean("disable-vanilla-loot", false);
-            boolean onlyOneDrop = mobConfig.getBoolean("only-one-drop", false); // Leer la nueva opción
+            boolean onlyOneDrop = mobConfig.getBoolean("only-one-drop", false);
 
             List<Map<String, Object>> items = (List<Map<String, Object>>) mobConfig.getList("items");
 
