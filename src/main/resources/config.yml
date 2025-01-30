@@ -8,11 +8,13 @@ mobs:
         lore:
           - "&7Esta es una línea de lore personalizada"
           - "&dCon soporte para colores hex y &!"
+        quantity: 1
       - item: DIAMOND
         chance: 30
         custom-name: "&bDiamante Brillante"
         lore:
           - "&7Un diamante muy raro"
+        quantity: 3
       - item: EMERALD
         chance: 50
         custom-name: "&aGema Misteriosa"
@@ -23,6 +25,7 @@ mobs:
         custom-name: "&6Lingote Dorado"
         lore:
           - "&7Un lingote de oro puro"
+        quantity: 2
 
   SKELETON:
     disable-vanilla-loot: false

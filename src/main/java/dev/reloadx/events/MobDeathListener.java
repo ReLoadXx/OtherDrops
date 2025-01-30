@@ -62,6 +62,10 @@ public class MobDeathListener implements Listener {
                 String customName = (String) itemMap.get("custom-name");
                 List<String> lore = (List<String>) itemMap.get("lore");
 
+                int quantity = itemMap.containsKey("quantity")
+                        ? ((Number) itemMap.get("quantity")).intValue()
+                        : 1;
+
                 Material material = Material.matchMaterial(itemName);
                 if (material == null) continue;
 
@@ -69,6 +73,8 @@ public class MobDeathListener implements Listener {
                         .setName(customName)
                         .setLore(lore)
                         .build();
+
+                customItem.setAmount(quantity);
 
                 event.getDrops().add(customItem);
                 return;
