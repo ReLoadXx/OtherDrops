@@ -30,7 +30,6 @@ public class MobDeathListener implements Listener {
 
         if (mobConfig != null) {
             boolean disableVanillaLoot = mobConfig.getBoolean("disable-vanilla-loot", false);
-            boolean onlyOneDrop = mobConfig.getBoolean("only-one-drop", false);
 
             List<Map<String, Object>> items = (List<Map<String, Object>>) mobConfig.getList("items");
 
@@ -39,45 +38,40 @@ public class MobDeathListener implements Listener {
             }
 
             if (items != null && !items.isEmpty()) {
-                dropItems(event, items, onlyOneDrop);
+                dropItems(event, items);
             }
         }
     }
 
-    private void dropItems(EntityDeathEvent event, List<Map<String, Object>> items, boolean onlyOneDrop) {
+    private void dropItems(EntityDeathEvent event, List<Map<String, Object>> items) {
+        double totalChance = items.stream()
+                .mapToDouble(item -> ((Number) item.get("chance")).doubleValue())
+                .sum();
+
+        double emptyChance = totalChance < 100 ? 100 - totalChance : 0;
+
+        int randomValue = random.nextInt((int) ((totalChance + emptyChance) * 100));
+
+        double accumulatedChance = 0;
         for (Map<String, Object> itemMap : items) {
-            String itemName = (String) itemMap.get("item");
+            double chance = ((Number) itemMap.get("chance")).doubleValue() * 100;
+            accumulatedChance += chance;
 
-            Object chanceObj = itemMap.get("chance");
+            if (randomValue < accumulatedChance) {
+                String itemName = (String) itemMap.get("item");
+                String customName = (String) itemMap.get("custom-name");
+                List<String> lore = (List<String>) itemMap.get("lore");
 
-            double dropChanceDecimal = 0;
-            if (chanceObj instanceof Double) {
-                dropChanceDecimal = (Double) chanceObj;
-            } else if (chanceObj instanceof Integer) {
-                dropChanceDecimal = ((Integer) chanceObj).doubleValue();
-            }
+                Material material = Material.matchMaterial(itemName);
+                if (material == null) continue;
 
-            int dropChance = (int) (dropChanceDecimal * 100);
-            String customName = (String) itemMap.get("custom-name");
-            List<String> lore = (List<String>) itemMap.get("lore");
-
-            Material material = Material.matchMaterial(itemName);
-            if (material == null) continue;
-
-            int randomValue = random.nextInt(10000);
-            boolean shouldDrop = randomValue < dropChance;
-
-            if (shouldDrop) {
                 ItemStack customItem = new CustomItemBuilder(material)
                         .setName(customName)
                         .setLore(lore)
                         .build();
 
                 event.getDrops().add(customItem);
-
-                if (onlyOneDrop) {
-                    break;
-                }
+                return;
             }
         }
     }

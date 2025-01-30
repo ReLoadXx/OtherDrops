@@ -1,7 +1,6 @@
 mobs:
   ZOMBIE:
     disable-vanilla-loot: true
-    only-one-drop: true
     items:
       - item: DIAMOND_SWORD
         chance: 70
@@ -14,10 +13,19 @@ mobs:
         custom-name: "&bDiamante Brillante"
         lore:
           - "&7Un diamante muy raro"
+      - item: EMERALD
+        chance: 50
+        custom-name: "&aGema Misteriosa"
+        lore:
+          - "&bEsta gema tiene poderes mágicos"
+      - item: GOLD_INGOT
+        chance: 50
+        custom-name: "&6Lingote Dorado"
+        lore:
+          - "&7Un lingote de oro puro"
 
   SKELETON:
     disable-vanilla-loot: false
-    only-one-drop: false
     items:
       - item: EMERALD
         chance: 50
@@ -32,7 +40,6 @@ mobs:
 
   CREEPER:
     disable-vanilla-loot: false
-    only-one-drop: true
     items:
       - item: NETHER_STAR
         chance: 50
@@ -44,10 +51,9 @@ mobs:
         custom-name: "&cCarga Explosiva"
         lore:
           - "&7¡Una carga explosiva lista para detonarse!"
-          -
+
   COW:
     disable-vanilla-loot: true
-    only-one-drop: true
     items:
       - item: NETHER_STAR
         chance: 0.1
