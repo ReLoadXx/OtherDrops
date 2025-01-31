@@ -12,9 +12,7 @@ public class OtherDrops extends JavaPlugin {
     @Override
     public void onEnable() {
         this.configManager = new ConfigManager(this);
-
         Bukkit.getPluginManager().registerEvents(new MobDeathListener(configManager), this);
-
         getLogger().info("OtherDrops plugin has been enabled!");
     }
 

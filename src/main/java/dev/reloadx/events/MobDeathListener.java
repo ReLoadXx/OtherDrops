@@ -1,18 +1,20 @@
 package dev.reloadx.events;
 
 import dev.reloadx.config.ConfigManager;
-import dev.reloadx.items.CustomItemBuilder;
+import dev.reloadx.config.MobDropConfig;
+import dev.reloadx.items.builders.CustomItemBuilder;
+import dev.reloadx.items.models.CustomItem;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
+import org.bukkit.configuration.ConfigurationSection;
 
 public class MobDeathListener implements Listener {
 
@@ -29,54 +31,52 @@ public class MobDeathListener implements Listener {
         ConfigurationSection mobConfig = configManager.getConfig().getConfigurationSection("mobs." + entityType);
 
         if (mobConfig != null) {
-            boolean disableVanillaLoot = mobConfig.getBoolean("disable-vanilla-loot", false);
+            MobDropConfig dropConfig = new MobDropConfig(mobConfig);
 
-            List<Map<String, Object>> items = (List<Map<String, Object>>) mobConfig.getList("items");
-
-            if (disableVanillaLoot) {
+            if (dropConfig.isVanillaLootDisabled()) {
                 event.getDrops().clear();
             }
 
-            if (items != null && !items.isEmpty()) {
-                dropItems(event, items);
+            List<CustomItem> customItems = dropConfig.getCustomItems().stream()
+                    .map(this::mapToCustomItem)
+                    .collect(Collectors.toList());
+
+            if (!customItems.isEmpty()) {
+                dropItems(event, customItems);
             }
         }
     }
 
-    private void dropItems(EntityDeathEvent event, List<Map<String, Object>> items) {
-        double totalChance = items.stream()
-                .mapToDouble(item -> ((Number) item.get("chance")).doubleValue())
+    private CustomItem mapToCustomItem(Map<String, Object> itemMap) {
+        Material material = Material.matchMaterial((String) itemMap.get("item"));
+        String customName = (String) itemMap.get("custom-name");
+        List<String> lore = (List<String>) itemMap.get("lore");
+        int quantity = itemMap.containsKey("quantity") ? ((Number) itemMap.get("quantity")).intValue() : 1;
+        double chance = ((Number) itemMap.get("chance")).doubleValue();
+
+        return new CustomItem(material, customName, lore, quantity, chance);
+    }
+
+    private void dropItems(EntityDeathEvent event, List<CustomItem> customItems) {
+        double totalChance = customItems.stream()
+                .mapToDouble(CustomItem::getChance)
                 .sum();
 
         double emptyChance = totalChance < 100 ? 100 - totalChance : 0;
-
         int randomValue = random.nextInt((int) ((totalChance + emptyChance) * 100));
 
         double accumulatedChance = 0;
-        for (Map<String, Object> itemMap : items) {
-            double chance = ((Number) itemMap.get("chance")).doubleValue() * 100;
-            accumulatedChance += chance;
+        for (CustomItem customItem : customItems) {
+            accumulatedChance += customItem.getChance() * 100;
 
             if (randomValue < accumulatedChance) {
-                String itemName = (String) itemMap.get("item");
-                String customName = (String) itemMap.get("custom-name");
-                List<String> lore = (List<String>) itemMap.get("lore");
-
-                int quantity = itemMap.containsKey("quantity")
-                        ? ((Number) itemMap.get("quantity")).intValue()
-                        : 1;
-
-                Material material = Material.matchMaterial(itemName);
-                if (material == null) continue;
-
-                ItemStack customItem = new CustomItemBuilder(material)
-                        .setName(customName)
-                        .setLore(lore)
+                ItemStack itemStack = new CustomItemBuilder(customItem.getMaterial())
+                        .setName(customItem.getCustomName())
+                        .setLore(customItem.getLore())
                         .build();
 
-                customItem.setAmount(quantity);
-
-                event.getDrops().add(customItem);
+                itemStack.setAmount(customItem.getQuantity());
+                event.getDrops().add(itemStack);
                 return;
             }
         }

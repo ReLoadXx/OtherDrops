@@ -1,7 +1,7 @@
 package dev.reloadx.config;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigManager {
 
