@@ -21,9 +21,9 @@ public class CustomLootConfig {
     }
 
     public void loadConfig() {
-        File configFile = new File(plugin.getDataFolder(), "config.yml");
+        File configFile = new File(plugin.getDataFolder(), "otherdrops.yml");
         if (!configFile.exists()) {
-            plugin.saveResource("config.yml", false);
+            plugin.saveResource("otherdrops.yml", false);
         }
         config = YamlConfiguration.loadConfiguration(configFile);
     }

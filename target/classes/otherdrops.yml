@@ -6,7 +6,7 @@ items:
       - "&7Forged with obsidian"
       - "&7It's resistant and powerful"
     mobs:
-      ZOMBIE:  # Clave del mob
+      ZOMBIE:
         drops:
           - item: NETHERITE_SWORD
             chance: 30.0
