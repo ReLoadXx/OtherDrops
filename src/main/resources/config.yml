@@ -1,70 +1,61 @@
-mobs:
-  ZOMBIE:
-    disable-vanilla-loot: true
-    items:
-      - item: DIAMOND_SWORD
-        chance: 70
-        custom-name: "&6Espada de &cFuego"
-        lore:
-          - "&7Esta es una línea de lore personalizada"
-          - "&dCon soporte para colores hex y &!"
-        quantity: 1
-      - item: DIAMOND
-        chance: 30
-        custom-name: "&bDiamante Brillante"
-        lore:
-          - "&7Un diamante muy raro"
-        quantity: 3
-      - item: EMERALD
-        chance: 50
-        custom-name: "&aGema Misteriosa"
-        lore:
-          - "&bEsta gema tiene poderes mágicos"
-      - item: GOLD_INGOT
-        chance: 50
-        custom-name: "&6Lingote Dorado"
-        lore:
-          - "&7Un lingote de oro puro"
-        quantity: 2
-
-  SKELETON:
-    disable-vanilla-loot: false
-    items:
-      - item: EMERALD
-        chance: 50
-        custom-name: "&aGema Misteriosa"
-        lore:
-          - "&bEsta gema tiene poderes mágicos"
-      - item: GOLD_INGOT
-        chance: 50
-        custom-name: "&6Lingote Dorado"
-        lore:
-          - "&7Un lingote de oro puro"
-
-  CREEPER:
-    disable-vanilla-loot: false
-    items:
-      - item: NETHER_STAR
-        chance: 50
-        custom-name: "#FF5733Estrella Ardiente"
-        lore:
-          - "#FF0000Brilla intensamente como el fuego"
-      - item: TNT
-        chance: 50
-        custom-name: "&cCarga Explosiva"
-        lore:
-          - "&7¡Una carga explosiva lista para detonarse!"
-
-  COW:
-    disable-vanilla-loot: true
-    items:
-      - item: NETHER_STAR
-        chance: 0.1
-        custom-name: "#FF5733Estrella Ardiente"
-        lore:
-          - "#FF0000Brilla intensamente como el fuego"
-      - item: TNT
-        chance: 50
-        custom-name: "&cCarga Explosiva"
-        lore:
-          - "&7¡Una carga explosiva lista para detonarse!"
+items:
+  obsidian:
+    item: DIAMOND_SWORD
+    display_name: "#FFF733Obsidian Fishing Rod"
+    lore:
+      - "&7Forged with obsidian"
+      - "&7It's resistant and powerful"
+    mobs:
+      ZOMBIE:
+        drops:
+          - item: NETHERITE_SWORD
+            chance: 30.0
+            display_name: "Netherite Sword"
+            lore:
+              - "&7A very powerful sword"
+              - "&7With ancient magic"
+            quantity: 1
+          - item: DIAMOND_SWORD
+            chance: 20.0
+            display_name: "Diamond Sword"
+            lore:
+              - "&7A sharp and powerful sword"
+            quantity: 1
+      SKELETON:
+        drops:
+          - item: GOLDEN_APPLE
+            chance: 50.0
+            display_name: "Golden Apple"
+            lore:
+              - "&7A rare golden apple"
+            quantity: 2
+  granito:
+    item: DIAMOND_SWORD
+    display_name: "#FFF733Granito"
+    lore:
+      - "&7Forged with obsidian"
+      - "&7It's resistant and powerful"
+    mobs:
+      ZOMBIE:
+        drops:
+          - item: IRON_SWORD
+            chance: 30.0
+            display_name: "Netherite Sword"
+            lore:
+              - "&7A very powerful sword"
+              - "&7With ancient magic"
+            quantity: 1
+          - item: WOOD_SWORD
+            chance: 20.0
+            display_name: "Diamond Sword"
+            lore:
+              - "&7A sharp and powerful sword"
+            quantity: 1
+      SKELETON:
+        drops:
+          - item: APPLE
+            chance: 50.0
+            display_name: "Golden Apple"
+            lore:
+              - "&7A rare golden apple"
+            quantity: 2

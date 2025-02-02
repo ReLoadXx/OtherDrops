@@ -6,7 +6,7 @@ items:
       - "&7Forged with obsidian"
       - "&7It's resistant and powerful"
     mobs:
-      ZOMBIE:
+      ZOMBIE:  # Clave del mob
         drops:
           - item: NETHERITE_SWORD
             chance: 30.0
@@ -21,7 +21,7 @@ items:
             lore:
               - "&7A sharp and powerful sword"
             quantity: 1
-      SKELETON:
+      SKELETON:  # Clave del mob
         drops:
           - item: GOLDEN_APPLE
             chance: 50.0
@@ -29,33 +29,27 @@ items:
             lore:
               - "&7A rare golden apple"
             quantity: 2
-  granito:
+
+  diamond_sword_of_legends:
     item: DIAMOND_SWORD
-    display_name: "#FFF733Granito"
+    display_name: "&#A3D8F4Diamond Sword of Legends"
     lore:
-      - "&7Forged with obsidian"
-      - "&7It's resistant and powerful"
+      - "&7Forged with the finest diamonds"
+      - "&7Its blade glows with magic"
     mobs:
       ZOMBIE:
         drops:
-          - item: IRON_SWORD
-            chance: 30.0
-            display_name: "Netherite Sword"
-            lore:
-              - "&7A very powerful sword"
-              - "&7With ancient magic"
-            quantity: 1
-          - item: WOOD_SWORD
+          - item: DIAMOND_SWORD
             chance: 20.0
             display_name: "Diamond Sword"
             lore:
               - "&7A sharp and powerful sword"
             quantity: 1
-      SKELETON:
+      CREEPER:
         drops:
-          - item: APPLE
-            chance: 50.0
-            display_name: "Golden Apple"
+          - item: TNT
+            chance: 80.0
+            display_name: "Explosive TNT"
             lore:
-              - "&7A rare golden apple"
-            quantity: 2
+              - "&7An explosive item from a creeper"
+            quantity: 3
