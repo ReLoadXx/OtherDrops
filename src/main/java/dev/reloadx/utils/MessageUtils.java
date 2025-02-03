@@ -10,8 +10,9 @@ public class MessageUtils {
     }
 
     public String getMessage(String key) {
-        String prefix = messagesConfig.getPrefix();
-        String message = messagesConfig.getMessage(key);
+        String prefix = this.messagesConfig.getPrefix();
+        String message = this.messagesConfig.getMessage(key);
         return ColorUtils.hex(prefix + message);
     }
 }
+

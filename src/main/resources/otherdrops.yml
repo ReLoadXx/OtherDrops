@@ -10,10 +10,10 @@ items:
         drops:
           - item: NETHERITE_SWORD
             chance: 30.0
-            display_name: "Netherite Sword"
+            display_name: "#FFF733Netherite Sword"
             lore:
-              - "&7A very powerful sword"
-              - "&7With ancient magic"
+              - "#FFF733A very powerful sword"
+              - "&dWith ancient magic"
             quantity: 1
           - item: DIAMOND_SWORD
             chance: 20.0

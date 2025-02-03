@@ -1,6 +1,7 @@
 package dev.reloadx.listeners;
 
 import dev.reloadx.config.CustomLootConfig;
+import dev.reloadx.utils.ColorUtils;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -85,6 +86,24 @@ public class MobDeathListener implements Listener {
                 Material material = Material.getMaterial(itemType);
                 if (material != null) {
                     ItemStack dropItem = new ItemStack(material, quantity);
+
+                    String displayName = (String) dropMap.get("display_name");
+                    List<String> lore = (List<String>) dropMap.get("lore");
+
+                    ItemMeta meta = dropItem.getItemMeta();
+                    if (meta != null) {
+                        if (displayName != null) {
+                            meta.setDisplayName(ColorUtils.hex(displayName));
+                        }
+                        if (lore != null) {
+                            lore = lore.stream()
+                                    .map(ColorUtils::hex)
+                                    .toList();
+                            meta.setLore(lore);
+                        }
+                        dropItem.setItemMeta(meta);
+                    }
+
                     event.getDrops().add(dropItem);
                     logger.info("Item dropeado: " + material.name() + " x" + quantity);
                 } else {
@@ -95,4 +114,5 @@ public class MobDeathListener implements Listener {
             }
         }
     }
+
 }

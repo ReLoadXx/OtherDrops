@@ -1,6 +1,5 @@
 package dev.reloadx;
 
-import dev.reloadx.commands.GiveItemCommand;
 import dev.reloadx.commands.CommandManager;
 import dev.reloadx.config.CustomLootConfig;
 import dev.reloadx.config.MessagesConfig;
@@ -16,18 +15,14 @@ public class OtherDrops extends JavaPlugin {
         StartupManager.onStartup(getLogger(), this);
 
         saveDefaultConfig();
-        saveResource("messages.yml", false); // Guardar el archivo messages.yml si no existe
+        saveResource("messages.yml", false);
 
         MessagesConfig messagesConfig = new MessagesConfig(this);
         MessageUtils messageUtils = new MessageUtils(messagesConfig);
 
-        // Registramos el comando
-        GiveItemCommand giveItemCommand = new GiveItemCommand(this, new CustomLootConfig(this), messageUtils);
-        getCommand("giveitem").setExecutor(giveItemCommand);
-
-        // Otras configuraciones
-        new CommandManager(this, messageUtils, messagesConfig);
         CustomLootConfig lootConfig = new CustomLootConfig(this);
         getServer().getPluginManager().registerEvents(new MobDeathListener(lootConfig), this);
+
+        new CommandManager(this, messageUtils, messagesConfig);
     }
 }
