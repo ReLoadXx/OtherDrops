@@ -2,7 +2,6 @@ package dev.reloadx;
 
 import dev.reloadx.commands.CommandManager;
 import dev.reloadx.commands.OtherDropsCommandManager;
-import dev.reloadx.config.CustomLootConfig;
 import dev.reloadx.config.MessagesConfig;
 import dev.reloadx.config.OtherDropsConfig;
 import dev.reloadx.listeners.MobDeathListener;
@@ -14,6 +13,8 @@ public class OtherDrops extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getLogger().info("OtherDrops plugin activado.");
+
         StartupManager.onStartup(getLogger(), this);
 
         saveDefaultConfig();
@@ -22,13 +23,13 @@ public class OtherDrops extends JavaPlugin {
         MessagesConfig messagesConfig = new MessagesConfig(this);
         MessageUtils messageUtils = new MessageUtils(messagesConfig);
 
-        CustomLootConfig lootConfig = new CustomLootConfig(this);
-        getServer().getPluginManager().registerEvents(new MobDeathListener(lootConfig), this);
-
         OtherDropsConfig configManager = new OtherDropsConfig(this);
         new OtherDropsCommandManager(this, configManager);
 
         new CommandManager(this, messageUtils, messagesConfig);
+
+        getServer().getPluginManager().registerEvents(new MobDeathListener(configManager), this);
+
     }
 
 }

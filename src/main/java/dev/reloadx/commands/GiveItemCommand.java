@@ -1,16 +1,14 @@
 package dev.reloadx.commands;
 
 import dev.reloadx.config.OtherDropsConfig;
+import dev.reloadx.utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.List;
 
 public class GiveItemCommand implements SubCommand {
     private final OtherDropsConfig config;
@@ -26,28 +24,28 @@ public class GiveItemCommand implements SubCommand {
 
     @Override
     public String getDescription() {
-        return "";
+        return "Da un ítem de OtherDrops a un jugador.";
     }
 
     @Override
     public String getUsage() {
-        return "";
+        return "/otherdrops give <item> [jugador]";
     }
 
     @Override
     public String getPermission() {
-        return "";
+        return "otherdrops.give";
     }
 
     @Override
     public boolean execute(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("otherdrops.give")) {
+        if (!sender.hasPermission(getPermission())) {
             sender.sendMessage(ChatColor.RED + "No tienes permiso para usar este comando.");
             return true;
         }
 
         if (args.length < 2 || args.length > 3) {
-            sender.sendMessage(ChatColor.RED + "Uso: /otherdrops give <item> [jugador]");
+            sender.sendMessage(ChatColor.RED + "Uso correcto: " + getUsage());
             return true;
         }
 
@@ -59,31 +57,28 @@ public class GiveItemCommand implements SubCommand {
             return true;
         }
 
-        if (!config.getConfig().contains("items." + itemKey)) {
+        ConfigurationSection itemConfig = config.getConfig().getConfigurationSection("items." + itemKey);
+        if (itemConfig == null) {
             sender.sendMessage(ChatColor.RED + "El ítem '" + itemKey + "' no existe en otherdrops.yml.");
             return true;
         }
 
-        String materialName = config.getConfig().getString("items." + itemKey + ".item");
-        String displayName = ChatColor.translateAlternateColorCodes('&', config.getConfig().getString("items." + itemKey + ".display_name"));
-        List<String> lore = config.getConfig().getStringList("items." + itemKey + ".lore");
-
-        Material material = Material.matchMaterial(materialName);
-        if (material == null) {
-            sender.sendMessage(ChatColor.RED + "El material '" + materialName + "' del ítem '" + itemKey + "' no es válido.");
+        ItemStack item = ItemUtils.createItem(itemConfig);
+        if (item == null) {
+            sender.sendMessage(ChatColor.RED + "No se pudo crear el ítem '" + itemKey + "'.");
             return true;
         }
 
-        ItemStack item = new ItemStack(material);
-        ItemMeta meta = item.getItemMeta();
-        if (meta != null) {
-            meta.setDisplayName(displayName);
-            meta.setLore(lore);
-            item.setItemMeta(meta);
+        if (target.getInventory().firstEmpty() == -1) {
+            target.getWorld().dropItemNaturally(target.getLocation(), item);
+            sender.sendMessage(ChatColor.YELLOW + "El inventario de " + target.getName() + " está lleno. El ítem ha sido arrojado al suelo.");
+        } else {
+            target.getInventory().addItem(item);
+            sender.sendMessage(ChatColor.GREEN + "Has dado el ítem '" + item.getItemMeta().getDisplayName() + "' a " + target.getName() + ".");
         }
 
-        target.getInventory().addItem(item);
-        sender.sendMessage(ChatColor.GREEN + "Has dado el ítem '" + displayName + "' a " + target.getName() + ".");
         return true;
     }
+
 }
+

@@ -1,6 +1,6 @@
 package dev.reloadx.listeners;
 
-import dev.reloadx.config.CustomLootConfig;
+import dev.reloadx.config.OtherDropsConfig;
 import dev.reloadx.utils.ColorUtils;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -18,17 +18,19 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 public class MobDeathListener implements Listener {
-    private final CustomLootConfig lootConfig;
+    private final OtherDropsConfig lootConfig;
     private final Random random = new Random();
     private final Logger logger;
 
-    public MobDeathListener(CustomLootConfig lootConfig) {
+    public MobDeathListener(OtherDropsConfig lootConfig) {
         this.lootConfig = lootConfig;
         this.logger = lootConfig.getPlugin().getLogger();
     }
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
+        logger.info("Evento de muerte recibido: " + event.getEntity().getName());
+
         if (event.getEntity().getKiller() != null) {
             Player player = event.getEntity().getKiller();
             ItemStack itemInHand = player.getInventory().getItemInMainHand();
@@ -36,28 +38,33 @@ public class MobDeathListener implements Listener {
 
             if (meta != null && meta.hasDisplayName()) {
                 String displayName = meta.getDisplayName();
-                ConfigurationSection items = lootConfig.getItems();
+                logger.info("Jugador: " + player.getName() + " ha matado un mob con el item: " + displayName);
 
-                logger.info("Comprobando drops para el item: " + displayName);
-
+                ConfigurationSection items = lootConfig.getConfig().getConfigurationSection("items");
                 if (items != null) {
+                    logger.info("Se encontraron " + items.getKeys(false).size() + " items configurados en 'items'.");
+
                     for (String itemKey : items.getKeys(false)) {
                         ConfigurationSection itemData = items.getConfigurationSection(itemKey);
                         if (itemData != null) {
                             String configDisplayName = itemData.getString("display_name");
+                            logger.info("Verificando item: " + itemKey + " con display_name: " + configDisplayName);
 
                             if (displayName.equals(configDisplayName)) {
                                 logger.info("Item coincide con la configuración: " + displayName);
                                 ConfigurationSection mobs = itemData.getConfigurationSection("mobs");
+
                                 if (mobs != null) {
                                     EntityType mobType = event.getEntityType();
                                     String mobKey = mobType.toString();
+                                    logger.info("Mob muerto: " + mobKey);
 
                                     if (mobs.contains(mobKey)) {
                                         logger.info("Configuración encontrada para el mob: " + mobKey);
                                         List<Map<?, ?>> drops = mobs.getMapList(mobKey + ".drops");
+
                                         if (drops != null && !drops.isEmpty()) {
-                                            logger.info("Cantidad de drops encontrados: " + drops.size());
+                                            logger.info("Cantidad de drops encontrados para el mob " + mobKey + ": " + drops.size());
                                             processDrops(event, drops);
                                         } else {
                                             logger.warning("No se encontraron drops para el mob: " + mobKey);
@@ -65,19 +72,31 @@ public class MobDeathListener implements Listener {
                                     } else {
                                         logger.warning("No se encontró configuración para el mob: " + mobKey);
                                     }
+                                } else {
+                                    logger.warning("No se encontró configuración de mobs en el item: " + itemKey);
                                 }
+                            } else {
+                                logger.info("El display_name no coincide con la configuración: " + displayName + " != " + configDisplayName);
                             }
                         }
                     }
+                } else {
+                    logger.warning("No se encontró la sección 'items' en la configuración.");
                 }
+            } else {
+                logger.warning("El item en la mano del jugador no tiene un nombre.");
             }
+        } else {
+            logger.warning("El evento de muerte no tiene un killer.");
         }
     }
 
     private void processDrops(EntityDeathEvent event, List<Map<?, ?>> drops) {
+        logger.info("Procesando los drops...");
+
         for (Map<?, ?> dropMap : drops) {
             double chance = (double) dropMap.get("chance");
-            logger.info("Procesando drop con probabilidad: " + chance + "%");
+            logger.info("Probabilidad del drop: " + chance + "%");
 
             if (random.nextDouble() * 100 <= chance) {
                 String itemType = (String) dropMap.get("item");
@@ -94,12 +113,14 @@ public class MobDeathListener implements Listener {
                     if (meta != null) {
                         if (displayName != null) {
                             meta.setDisplayName(ColorUtils.hex(displayName));
+                            logger.info("Estableciendo displayName: " + displayName);
                         }
                         if (lore != null) {
                             lore = lore.stream()
                                     .map(ColorUtils::hex)
                                     .toList();
                             meta.setLore(lore);
+                            logger.info("Estableciendo lore: " + lore);
                         }
                         dropItem.setItemMeta(meta);
                     }
@@ -114,5 +135,4 @@ public class MobDeathListener implements Listener {
             }
         }
     }
-
 }
