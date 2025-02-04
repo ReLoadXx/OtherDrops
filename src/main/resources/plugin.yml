@@ -4,28 +4,27 @@ version: 1.0.0
 author: ReLoadX
 api-version: 1.19
 prefix: "OtherCore"
+
 commands:
   othercore:
+    description: Comando principal de OtherCore
+    usage: /othercore <subcomando>
+    permission: othercore.use
+
+  otherdrops:
     description: Comando principal de OtherDrops
-    usage: /<command> <subcomando>
-    subcommands:
-      reload:
-        description: Recarga la configuración del plugin
-        usage: /othercore reload
-        permission: otherdrops.reload
-  giveitem:
-    description: Da un ítem a un jugador
-    usage: /giveitem <item>
-    permission: otherdrops.giveitem
-    permission-message: "No tienes permiso para usar este comando."
+    usage: /otherdrops <subcomando>
+    permission: otherdrops.use
+
 permissions:
-  otherdrops.reload:
-    description: Permite recargar la configuración del plugin
+  othercore.use:
+    description: Permite usar /othercore
     default: op
-  otherdrops.giveitem:
-    description: Permite dar ítems a los jugadores
+
+  otherdrops.use:
+    description: Permite usar /otherdrops
     default: op
-general:
-  reload-success: "#FFFFFFConfiguración recargada correctamente."
-  reload-failure: "&cError al recargar la configuración."
-  no-permission: "&cNo tienes permiso para ejecutar este comando."
+
+  otherdrops.give:
+    description: Permite usar el subcomando /otherdrops give
+    default: op

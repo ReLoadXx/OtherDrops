@@ -1,9 +1,7 @@
 package dev.reloadx.commands;
 
 import dev.reloadx.OtherDrops;
-import dev.reloadx.commands.subcommands.ReloadCommand;
-import dev.reloadx.config.MessagesConfig;
-import dev.reloadx.utils.MessageUtils;
+import dev.reloadx.config.OtherDropsConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,14 +10,20 @@ import org.bukkit.util.StringUtil;
 
 import java.util.*;
 
-public class CommandManager implements CommandExecutor, TabCompleter {
+public class OtherDropsCommandManager implements CommandExecutor, TabCompleter {
     private final Map<String, SubCommand> subcommands = new HashMap<>();
+    private final OtherDropsConfig config;
 
-    public CommandManager(OtherDrops plugin, MessageUtils messageUtils, MessagesConfig messagesConfig) {
-        registerSubCommand(new ReloadCommand(plugin, messageUtils, messagesConfig));
+    public OtherDropsCommandManager(OtherDrops plugin, OtherDropsConfig config) {
+        this.config = config;
+        registerSubCommands();
 
-        Objects.requireNonNull(plugin.getCommand("othercore")).setExecutor(this);
-        Objects.requireNonNull(plugin.getCommand("othercore")).setTabCompleter(this);
+        Objects.requireNonNull(plugin.getCommand("otherdrops")).setExecutor(this);
+        Objects.requireNonNull(plugin.getCommand("otherdrops")).setTabCompleter(this);
+    }
+
+    private void registerSubCommands() {
+        registerSubCommand(new GiveItemCommand(config));
     }
 
     private void registerSubCommand(SubCommand subCommand) {
@@ -29,14 +33,17 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage("§cUso: /othercore <subcomando>");
+            sender.sendMessage("§6===== OtherDrops Comandos =====");
+            for (SubCommand subCommand : subcommands.values()) {
+                sender.sendMessage("§e/" + label + " " + subCommand.getName() + " §7- " + subCommand.getDescription());
+            }
             return true;
         }
 
         SubCommand subCommand = subcommands.get(args[0].toLowerCase());
 
         if (subCommand == null) {
-            sender.sendMessage("§cSubcomando desconocido. Usa: /othercore <subcomando>");
+            sender.sendMessage("§cSubcomando desconocido. Usa: /otherdrops para ver la lista.");
             return true;
         }
 
@@ -48,6 +55,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             List<String> subcommandNames = new ArrayList<>(subcommands.keySet());
             return StringUtil.copyPartialMatches(args[0], subcommandNames, new ArrayList<>());
+        } else if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
+            return new ArrayList<>(config.getConfig().getConfigurationSection("items").getKeys(false));
         }
         return new ArrayList<>();
     }

@@ -1,11 +1,10 @@
 package dev.reloadx.commands;
 
-import dev.reloadx.OtherDrops;
-import dev.reloadx.config.CustomLootConfig;
-import dev.reloadx.utils.MessageUtils;
+import dev.reloadx.config.OtherDropsConfig;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -13,59 +12,78 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class GiveItemCommand implements CommandExecutor {
-    private final OtherDrops plugin;
-    private final CustomLootConfig lootConfig;
-    private final MessageUtils messageUtils;
+public class GiveItemCommand implements SubCommand {
+    private final OtherDropsConfig config;
 
-    public GiveItemCommand(OtherDrops plugin, CustomLootConfig lootConfig, MessageUtils messageUtils) {
-        this.plugin = plugin;
-        this.lootConfig = lootConfig;
-        this.messageUtils = messageUtils;
+    public GiveItemCommand(OtherDropsConfig config) {
+        this.config = config;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(messageUtils.getMessage("solo_jugadores"));
-            return false;
-        }
-
-        if (args.length == 0) {
-            sender.sendMessage(messageUtils.getMessage("comando_invalido"));
-            return false;
-        }
-
-        String itemName = args[0].toLowerCase();
-        Player player = (Player) sender;
-
-        if (!player.hasPermission("otherdrops.giveitem")) {
-            player.sendMessage(messageUtils.getMessage("no-permission"));
-            return false;
-        }
-
-        if (itemName.equals("obsidian")) {
-            ItemStack item = createObsidianItem();
-            player.getInventory().addItem(item);
-            player.sendMessage(messageUtils.getMessage("item_entregado").replace("%item%", itemName));
-            return true;
-        } else {
-            player.sendMessage(messageUtils.getMessage("item_no_encontrado"));
-            return false;
-        }
+    public String getName() {
+        return "give";
     }
 
-    private ItemStack createObsidianItem() {
-        ItemStack item = new ItemStack(Material.DIAMOND_SWORD, 1);
+    @Override
+    public String getDescription() {
+        return "";
+    }
+
+    @Override
+    public String getUsage() {
+        return "";
+    }
+
+    @Override
+    public String getPermission() {
+        return "";
+    }
+
+    @Override
+    public boolean execute(CommandSender sender, Command command, String label, String[] args) {
+        if (!sender.hasPermission("otherdrops.give")) {
+            sender.sendMessage(ChatColor.RED + "No tienes permiso para usar este comando.");
+            return true;
+        }
+
+        if (args.length < 2 || args.length > 3) {
+            sender.sendMessage(ChatColor.RED + "Uso: /otherdrops give <item> [jugador]");
+            return true;
+        }
+
+        String itemKey = args[1].toLowerCase();
+        Player target = args.length == 3 ? Bukkit.getPlayer(args[2]) : (sender instanceof Player ? (Player) sender : null);
+
+        if (target == null) {
+            sender.sendMessage(ChatColor.RED + "El jugador especificado no está en línea.");
+            return true;
+        }
+
+        if (!config.getConfig().contains("items." + itemKey)) {
+            sender.sendMessage(ChatColor.RED + "El ítem '" + itemKey + "' no existe en otherdrops.yml.");
+            return true;
+        }
+
+        String materialName = config.getConfig().getString("items." + itemKey + ".item");
+        String displayName = ChatColor.translateAlternateColorCodes('&', config.getConfig().getString("items." + itemKey + ".display_name"));
+        List<String> lore = config.getConfig().getStringList("items." + itemKey + ".lore");
+
+        Material material = Material.matchMaterial(materialName);
+        if (material == null) {
+            sender.sendMessage(ChatColor.RED + "El material '" + materialName + "' del ítem '" + itemKey + "' no es válido.");
+            return true;
+        }
+
+        ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.setDisplayName("#FFF733Obsidian Fishing Rod");
-            meta.setLore(List.of(
-                    "&7Forged with obsidian",
-                    "&7It's resistant and powerful"
-            ));
+            meta.setDisplayName(displayName);
+            meta.setLore(lore);
             item.setItemMeta(meta);
         }
-        return item;
+
+        target.getInventory().addItem(item);
+        sender.sendMessage(ChatColor.GREEN + "Has dado el ítem '" + displayName + "' a " + target.getName() + ".");
+        return true;
     }
 }
