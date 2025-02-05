@@ -13,7 +13,6 @@ public class OtherDrops extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("OtherDrops plugin activado.");
 
         StartupManager.onStartup(getLogger(), this);
 
