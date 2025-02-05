@@ -1,0 +1,61 @@
+items:
+  obsidian:
+    item: DIAMOND_SWORD
+    display_name: "#FFF733Obsidian Fishing Rod"
+    lore:
+      - "&7Forged with obsidian"
+      - "&7It's resistant and powerful"
+    mobs:
+      ZOMBIE:
+        drops:
+          - item: NETHERITE_SWORD
+            chance: 30.0
+            display_name: "Netherite Sword"
+            lore:
+              - "&7A very powerful sword"
+              - "&7With ancient magic"
+            quantity: 1
+          - item: DIAMOND_SWORD
+            chance: 20.0
+            display_name: "Diamond Sword"
+            lore:
+              - "&7A sharp and powerful sword"
+            quantity: 1
+      SKELETON:
+        drops:
+          - item: GOLDEN_APPLE
+            chance: 50.0
+            display_name: "Golden Apple"
+            lore:
+              - "&7A rare golden apple"
+            quantity: 2
+  granito:
+    item: DIAMOND_SWORD
+    display_name: "#FFF733Granito"
+    lore:
+      - "&7Forged with obsidian"
+      - "&7It's resistant and powerful"
+    mobs:
+      ZOMBIE:
+        drops:
+          - item: IRON_SWORD
+            chance: 30.0
+            display_name: "Netherite Sword"
+            lore:
+              - "&7A very powerful sword"
+              - "&7With ancient magic"
+            quantity: 1
+          - item: WOOD_SWORD
+            chance: 20.0
+            display_name: "Diamond Sword"
+            lore:
+              - "&7A sharp and powerful sword"
+            quantity: 1
+      SKELETON:
+        drops:
+          - item: APPLE
+            chance: 50.0
+            display_name: "Golden Apple"
+            lore:
+              - "&7A rare golden apple"
+            quantity: 2

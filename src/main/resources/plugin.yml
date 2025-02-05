@@ -1,0 +1,30 @@
+name: OtherDrops
+main: dev.reloadx.OtherDrops
+version: 1.0.0
+author: ReLoadX
+api-version: 1.19
+prefix: "OtherCore"
+
+commands:
+  othercore:
+    description: Comando principal de OtherCore
+    usage: /othercore <subcomando>
+    permission: othercore.use
+
+  otherdrops:
+    description: Comando principal de OtherDrops
+    usage: /otherdrops <subcomando>
+    permission: otherdrops.use
+
+permissions:
+  othercore.use:
+    description: Permite usar /othercore
+    default: op
+
+  otherdrops.use:
+    description: Permite usar /otherdrops
+    default: op
+
+  otherdrops.give:
+    description: Permite usar el subcomando /otherdrops give
+    default: op

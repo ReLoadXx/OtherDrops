@@ -1,0 +1,5 @@
+prefix: "&8[&bOtherDrops&8] &7"
+general:
+  reload-success: "#FFFFFFConfiguración recargada correctamente."
+  reload-failure: "&cError al recargar la configuración."
+  no-permission: "&cNo tienes permiso para ejecutar este comando."
