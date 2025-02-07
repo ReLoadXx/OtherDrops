@@ -14,7 +14,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class MobDeathListener implements Listener {
     private final OtherDropsConfig lootConfig;
@@ -27,59 +26,57 @@ public class MobDeathListener implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        if (event.getEntity().getKiller() == null) {
+        Player player = event.getEntity().getKiller();
+        if (player == null) {
             return;
         }
 
-        Player player = event.getEntity().getKiller();
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
         ItemMeta meta = itemInHand.getItemMeta();
-
-        if (meta == null || !meta.hasDisplayName()) {
-            return;
-        }
-
-        String displayName = meta.getDisplayName();
+        String displayName = (meta != null && meta.hasDisplayName()) ? meta.getDisplayName() : null;
 
         ConfigurationSection items = lootConfig.getConfig().getConfigurationSection("items");
         if (items == null) {
             return;
         }
 
+        EntityType mobType = event.getEntityType();
+        String mobKey = mobType.toString();
+        boolean lootApplied = false;
+
         for (String itemKey : items.getKeys(false)) {
+            if (itemKey.equals("global_drops")) continue;
+
             ConfigurationSection itemData = items.getConfigurationSection(itemKey);
             if (itemData == null) continue;
 
             String configDisplayName = itemData.getString("display_name");
-            if (configDisplayName == null) {
-                continue;
-            }
+            if (configDisplayName == null) continue;
 
             String translatedDisplayName = ColorUtils.hex(configDisplayName);
-
-            if (!displayName.equals(translatedDisplayName)) continue;
+            if (displayName == null || !displayName.equals(translatedDisplayName)) continue;
 
             ConfigurationSection mobs = itemData.getConfigurationSection("mobs");
-            if (mobs == null) {
-                continue;
-            }
-
-            EntityType mobType = event.getEntityType();
-            String mobKey = mobType.toString();
-
-            if (!mobs.contains(mobKey)) {
-                continue;
-            }
+            if (mobs == null || !mobs.contains(mobKey)) continue;
 
             List<Map<?, ?>> drops = mobs.getMapList(mobKey + ".drops");
-            if (drops.isEmpty()) {
-                continue;
+            if (!drops.isEmpty()) {
+                dropProcessor.processDrops(drops).ifPresent(event.getDrops()::add);
+                lootApplied = true;
             }
+        }
 
-            Optional<ItemStack> drop = dropProcessor.processDrops(drops);
-            drop.ifPresent(itemStack -> {
-                event.getDrops().add(itemStack);
-            });
+        if (!lootApplied) {
+            ConfigurationSection globalDrops = items.getConfigurationSection("global_drops");
+            if (globalDrops != null) {
+                ConfigurationSection mobs = globalDrops.getConfigurationSection("mobs");
+                if (mobs != null && mobs.contains(mobKey)) {
+                    List<Map<?, ?>> drops = mobs.getMapList(mobKey + ".drops");
+                    if (!drops.isEmpty()) {
+                        dropProcessor.processDrops(drops).ifPresent(event.getDrops()::add);
+                    }
+                }
+            }
         }
     }
 }

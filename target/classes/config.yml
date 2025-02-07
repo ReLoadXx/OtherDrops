@@ -59,3 +59,23 @@ items:
             lore:
               - "&7A rare golden apple"
             quantity: 2
+  global_drops:
+    item: all
+    display_name: all
+    mobs:
+      ZOMBIE:
+        drops:
+          - item: IRON_INGOT
+            chance: 40.0
+            display_name: "Iron Ingot"
+            lore:
+              - "&7A piece of iron"
+            quantity: 2
+      SKELETON:
+        drops:
+          - item: BONE
+            chance: 60.0
+            display_name: "Ancient Bone"
+            lore:
+              - "&7A bone from an ancient skeleton"
+            quantity: 3

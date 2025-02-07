@@ -53,3 +53,23 @@ items:
             lore:
               - "&7An explosive item from a creeper"
             quantity: 3
+  global_drops:
+    item: all
+    display_name: all
+    mobs:
+      ZOMBIE:
+        drops:
+          - item: WOODEN_SWORD
+            chance: 90.0
+            display_name: "Iron Ingot"
+            lore:
+              - "&7A piece of iron"
+            quantity: 2
+      SKELETON:
+        drops:
+          - item: BONE
+            chance: 60.0
+            display_name: "Ancient Bone"
+            lore:
+              - "&7A bone from an ancient skeleton"
+            quantity: 3
