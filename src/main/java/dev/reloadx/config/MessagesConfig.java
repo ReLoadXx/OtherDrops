@@ -32,6 +32,16 @@ public class MessagesConfig {
     }
 
     public String getMessage(String key) {
-        return this.messagesConfig.getString("general." + key, "&cMensaje no encontrado: " + key);
+        String message = this.messagesConfig.getString("general." + key);
+        if (message != null) {
+            return message;
+        }
+
+        message = this.messagesConfig.getString("otherdrops." + key);
+        if (message != null) {
+            return message;
+        }
+
+        return "&cMensaje no encontrado: " + key;
     }
 }

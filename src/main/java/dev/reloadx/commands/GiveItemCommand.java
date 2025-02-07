@@ -2,8 +2,8 @@ package dev.reloadx.commands;
 
 import dev.reloadx.config.OtherDropsConfig;
 import dev.reloadx.utils.ItemUtils;
+import dev.reloadx.utils.MessageUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
@@ -12,9 +12,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class GiveItemCommand implements SubCommand {
     private final OtherDropsConfig config;
+    private final MessageUtils messageUtils;
 
-    public GiveItemCommand(OtherDropsConfig config) {
+    public GiveItemCommand(OtherDropsConfig config, MessageUtils messageUtils) {
         this.config = config;
+        this.messageUtils = messageUtils;
     }
 
     @Override
@@ -40,12 +42,12 @@ public class GiveItemCommand implements SubCommand {
     @Override
     public boolean execute(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission(getPermission())) {
-            sender.sendMessage(ChatColor.RED + "No tienes permiso para usar este comando.");
+            sender.sendMessage(messageUtils.getMessage("no-permission"));
             return true;
         }
 
         if (args.length < 2 || args.length > 3) {
-            sender.sendMessage(ChatColor.RED + "Uso correcto: " + getUsage());
+            sender.sendMessage(messageUtils.getMessage("invalid-usage"));
             return true;
         }
 
@@ -53,32 +55,32 @@ public class GiveItemCommand implements SubCommand {
         Player target = args.length == 3 ? Bukkit.getPlayer(args[2]) : (sender instanceof Player ? (Player) sender : null);
 
         if (target == null) {
-            sender.sendMessage(ChatColor.RED + "El jugador especificado no está en línea.");
+            sender.sendMessage(messageUtils.getMessage("player-not-found"));
             return true;
         }
 
         ConfigurationSection itemConfig = config.getConfig().getConfigurationSection("items." + itemKey);
         if (itemConfig == null) {
-            sender.sendMessage(ChatColor.RED + "El ítem '" + itemKey + "' no existe en otherdrops.yml.");
+            sender.sendMessage(messageUtils.getMessage("item-not-found").replace("%item%", itemKey));
             return true;
         }
 
         ItemStack item = ItemUtils.createItem(itemConfig);
         if (item == null) {
-            sender.sendMessage(ChatColor.RED + "No se pudo crear el ítem '" + itemKey + "'.");
+            sender.sendMessage(messageUtils.getMessage("failed-item-creation").replace("%item%", itemKey));
             return true;
         }
 
         if (target.getInventory().firstEmpty() == -1) {
             target.getWorld().dropItemNaturally(target.getLocation(), item);
-            sender.sendMessage(ChatColor.YELLOW + "El inventario de " + target.getName() + " está lleno. El ítem ha sido arrojado al suelo.");
+            sender.sendMessage(messageUtils.getMessage("give-full-inventory").replace("%player%", target.getName()));
         } else {
             target.getInventory().addItem(item);
-            sender.sendMessage(ChatColor.GREEN + "Has dado el ítem '" + item.getItemMeta().getDisplayName() + "' a " + target.getName() + ".");
+            sender.sendMessage(messageUtils.getMessage("give-success")
+                    .replace("%item%", item.getItemMeta().getDisplayName())
+                    .replace("%player%", target.getName()));
         }
 
         return true;
     }
-
 }
-

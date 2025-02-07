@@ -23,12 +23,11 @@ public class OtherDrops extends JavaPlugin {
         MessageUtils messageUtils = new MessageUtils(messagesConfig);
 
         OtherDropsConfig configManager = new OtherDropsConfig(this);
-        new OtherDropsCommandManager(this, configManager);
+
+        new OtherDropsCommandManager(this, configManager, messageUtils);
 
         new CommandManager(this, messageUtils, messagesConfig);
 
         getServer().getPluginManager().registerEvents(new MobDeathListener(configManager), this);
-
     }
-
 }
