@@ -16,6 +16,11 @@ commands:
     usage: /otherdrops <subcomando>
     permission: otherdrops.use
 
+  otherfishing:
+    description: Comando principal de OtherFishing
+    usage: /otherfishing <subcomando>
+    permission: otherfishing.use
+
 permissions:
   othercore.use:
     description: Permite usar /othercore
@@ -27,4 +32,12 @@ permissions:
 
   otherdrops.give:
     description: Permite usar el subcomando /otherdrops give
+    default: op
+
+  otherfishing.use:
+    description: Permite usar /otherfishing
+    default: op
+
+  otherfishing.give:
+    description: Permite usar el subcomando /otherfishing give
     default: op

@@ -43,6 +43,8 @@ public class ItemUtils {
                 }
             }
 
+            meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+
             item.setItemMeta(meta);
         }
         return item;

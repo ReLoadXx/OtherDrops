@@ -15,12 +15,11 @@ public class MessagesConfig {
     }
 
     public void loadMessages() {
-        File file = new File(this.plugin.getDataFolder(), "messages.yml");
-        if (!file.exists()) {
+        File messagesFile = new File(this.plugin.getDataFolder(), "messages.yml");
+        if (!messagesFile.exists()) {
             this.plugin.saveResource("messages.yml", false);
         }
-
-        this.messagesConfig = YamlConfiguration.loadConfiguration(file);
+        this.messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
     }
 
     public void reload() {
@@ -38,6 +37,11 @@ public class MessagesConfig {
         }
 
         message = this.messagesConfig.getString("otherdrops." + key);
+        if (message != null) {
+            return message;
+        }
+
+        message = this.messagesConfig.getString("otherfishing." + key);
         if (message != null) {
             return message;
         }

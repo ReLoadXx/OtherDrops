@@ -16,3 +16,9 @@ otherdrops:
   player-not-found: "&cEl jugador especificado no está en línea."
   failed-item-creation: "&cNo se pudo crear el ítem '%item%'."
 
+otherfishing:
+  give-success: "&aHas dado la caña de pescar '%item%' a %player%."
+  give-full-inventory: "&eEl inventario de %player% está lleno. El ítem ha sido arrojado al suelo."
+  item-not-found: "&cLa caña de pescar '%item%' no existe en otherfishing.yml."
+  player-not-found: "&cEl jugador especificado no está en línea."
+  failed-item-creation: "&cNo se pudo crear la caña de pescar '%item%'."
