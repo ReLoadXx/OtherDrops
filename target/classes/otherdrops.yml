@@ -14,6 +14,9 @@ items:
             lore:
               - "#FFF733A very powerful sword"
               - "&dWith ancient magic"
+            enchantments:
+              - SHARPNESS 5
+              - LOOTING 3
             quantity: 1
           - item: DIAMOND_SWORD
             chance: 20.0
