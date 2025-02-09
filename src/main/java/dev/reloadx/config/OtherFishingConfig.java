@@ -1,6 +1,6 @@
 package dev.reloadx.config;
 
-import dev.reloadx.OtherDrops;
+import dev.reloadx.OtherCore;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -8,11 +8,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class OtherFishingConfig {
-    private final OtherDrops plugin;
+    private final OtherCore plugin;
     private File configFile;
     private FileConfiguration config;
 
-    public OtherFishingConfig(OtherDrops plugin) {
+    public OtherFishingConfig(OtherCore plugin) {
         this.plugin = plugin;
         loadConfig();
     }

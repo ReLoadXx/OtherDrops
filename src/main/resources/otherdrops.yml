@@ -35,7 +35,7 @@ items:
 
   diamond_sword_of_legends:
     item: DIAMOND_SWORD
-    display_name: "&#A3D8F4Diamond Sword of Legends"
+    display_name: "#A3D8F4Diamond Sword of Legends"
     lore:
       - "&7Forged with the finest diamonds"
       - "&7Its blade glows with magic"

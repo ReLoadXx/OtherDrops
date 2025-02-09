@@ -1,6 +1,6 @@
 package dev.reloadx.commands;
 
-import dev.reloadx.OtherDrops;
+import dev.reloadx.OtherCore;
 import dev.reloadx.commands.subcommands.ReloadCommand;
 import dev.reloadx.config.MessagesConfig;
 import dev.reloadx.utils.MessageUtils;
@@ -15,7 +15,7 @@ import java.util.*;
 public class CommandManager implements CommandExecutor, TabCompleter {
     private final Map<String, SubCommand> subcommands = new HashMap<>();
 
-    public CommandManager(OtherDrops plugin, MessageUtils messageUtils, MessagesConfig messagesConfig) {
+    public CommandManager(OtherCore plugin, MessageUtils messageUtils, MessagesConfig messagesConfig) {
         registerSubCommand(new ReloadCommand(plugin, messageUtils, messagesConfig));
 
         Objects.requireNonNull(plugin.getCommand("othercore")).setExecutor(this);

@@ -1,8 +1,8 @@
 package dev.reloadx.commands;
 
-import dev.reloadx.OtherDrops;
+import dev.reloadx.OtherCore;
+import dev.reloadx.commands.subcommands.GiveItemCommand;
 import dev.reloadx.config.OtherDropsConfig;
-import dev.reloadx.config.MessagesConfig;
 import dev.reloadx.utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,7 +18,7 @@ public class OtherDropsCommandManager implements CommandExecutor, TabCompleter {
     private final OtherDropsConfig config;
     private final MessageUtils messageUtils;
 
-    public OtherDropsCommandManager(OtherDrops plugin, OtherDropsConfig config, MessageUtils messageUtils) {
+    public OtherDropsCommandManager(OtherCore plugin, OtherDropsConfig config, MessageUtils messageUtils) {
         this.config = config;
         this.messageUtils = messageUtils;
         registerSubCommands();

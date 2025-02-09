@@ -1,0 +1,76 @@
+sets:
+  speed_set:
+    helmet:
+      item: DIAMOND_HELMET
+      display_name: "Speed Helmet"
+      lore:
+        - "&7This helmet grants speed."
+      enchantments:
+        - PROTECTION 3
+        - AQUA_AFFINITY 1
+    chestplate:
+      item: DIAMOND_CHESTPLATE
+      display_name: "Speed Chestplate"
+      lore:
+        - "&7This chestplate grants speed."
+      enchantments:
+        - UNBREAKING 3
+        - THORNS 2
+    leggings:
+      item: DIAMOND_LEGGINGS
+      display_name: ""Speed Leggings"
+      lore:
+        - "&7These leggings grant speed."
+      enchantments:
+        - PROTECTION 4
+    boots:
+      item: DIAMOND_BOOTS
+      display_name: "#bbbbbb Speed Boots"
+      lore:
+        - "&7These boots grant speed."
+      enchantments:
+        - DEPTH_STRIDER 2
+        - FEATHER_FALLING 4
+    effects:
+      - effect: SPEED
+        level: 2
+      - effect: JUMP_BOOST
+        level: 1
+
+  fire_protection_set:
+    helmet:
+      item: GOLDEN_HELMET
+      display_name: "Fire Protection Helmet"
+      lore:
+        - "&7This helmet grants fire protection."
+      enchantments:
+        - PROTECTION_FIRE 4
+        - AQUA_AFFINITY 1
+    chestplate:
+      item: GOLDEN_CHESTPLATE
+      display_name: "Fire Protection Chestplate"
+      lore:
+        - "&7This chestplate grants fire protection."
+      enchantments:
+        - PROTECTION_FIRE 4
+        - UNBREAKING 3
+    leggings:
+      item: GOLDEN_LEGGINGS
+      display_name: "Fire Protection Leggings"
+      lore:
+        - "&7These leggings grant fire protection."
+      enchantments:
+        - PROTECTION_FIRE 3
+    boots:
+      item: GOLDEN_BOOTS
+      display_name: "Fire Protection Boots"
+      lore:
+        - "&7These boots grant fire protection."
+      enchantments:
+        - PROTECTION_FIRE 2
+        - FEATHER_FALLING 3
+    effects:
+      - effect: FIRE_RESISTANCE
+        level: 1
+      - effect: REGENERATION
+        level: 1

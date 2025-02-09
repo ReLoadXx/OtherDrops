@@ -1,5 +1,5 @@
 name: OtherDrops
-main: dev.reloadx.OtherDrops
+main: dev.reloadx.OtherCore
 version: 1.0.0
 author: ReLoadX
 api-version: 1.19
@@ -21,6 +21,11 @@ commands:
     usage: /otherfishing <subcomando>
     permission: otherfishing.use
 
+  otherarmor:
+    description: Comando para gestionar armaduras personalizadas.
+    usage: /otherarmor <subcomando>
+    permission: otherarmor.use
+
 permissions:
   othercore.use:
     description: Permite usar /othercore
@@ -39,5 +44,13 @@ permissions:
     default: op
 
   otherfishing.give:
+    description: Permite usar el subcomando /otherfishing give
+    default: op
+
+  otherarmor.use:
+    description: Permite usar /otherfishing
+    default: op
+
+  otherarmor.give:
     description: Permite usar el subcomando /otherfishing give
     default: op

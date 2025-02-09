@@ -1,6 +1,7 @@
-package dev.reloadx.commands;
+package dev.reloadx.commands.subcommands;
 
-import dev.reloadx.config.OtherFishingConfig;
+import dev.reloadx.commands.SubCommand;
+import dev.reloadx.config.OtherDropsConfig;
 import dev.reloadx.utils.ItemUtils;
 import dev.reloadx.utils.MessageUtils;
 import org.bukkit.Bukkit;
@@ -10,11 +11,11 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class GiveFishingRodCommand implements SubCommand {
-    private final OtherFishingConfig config;
+public class GiveItemCommand implements SubCommand {
+    private final OtherDropsConfig config;
     private final MessageUtils messageUtils;
 
-    public GiveFishingRodCommand(OtherFishingConfig config, MessageUtils messageUtils) {
+    public GiveItemCommand(OtherDropsConfig config, MessageUtils messageUtils) {
         this.config = config;
         this.messageUtils = messageUtils;
     }
@@ -26,17 +27,17 @@ public class GiveFishingRodCommand implements SubCommand {
 
     @Override
     public String getDescription() {
-        return "Da una caña de pescar especial a un jugador.";
+        return "Da un ítem de OtherDrops a un jugador.";
     }
 
     @Override
     public String getUsage() {
-        return "/otherfishing give <caña> [jugador]";
+        return "/otherdrops give <item> [jugador]";
     }
 
     @Override
     public String getPermission() {
-        return "otherfishing.give";
+        return "otherdrops.give";
     }
 
     @Override
@@ -51,7 +52,7 @@ public class GiveFishingRodCommand implements SubCommand {
             return true;
         }
 
-        String rodKey = args[1].toLowerCase();
+        String itemKey = args[1].toLowerCase();
         Player target = args.length == 3 ? Bukkit.getPlayer(args[2]) : (sender instanceof Player ? (Player) sender : null);
 
         if (target == null) {
@@ -59,25 +60,25 @@ public class GiveFishingRodCommand implements SubCommand {
             return true;
         }
 
-        ConfigurationSection rodConfig = config.getConfig().getConfigurationSection("special_fishing_rods." + rodKey);
-        if (rodConfig == null) {
-            sender.sendMessage(messageUtils.getMessage("item-not-found").replace("%item%", rodKey));
+        ConfigurationSection itemConfig = config.getConfig().getConfigurationSection("items." + itemKey);
+        if (itemConfig == null) {
+            sender.sendMessage(messageUtils.getMessage("item-not-found").replace("%item%", itemKey));
             return true;
         }
 
-        ItemStack rod = ItemUtils.createItem(rodConfig);
-        if (rod == null) {
-            sender.sendMessage(messageUtils.getMessage("failed-item-creation").replace("%item%", rodKey));
+        ItemStack item = ItemUtils.createItem(itemConfig);
+        if (item == null) {
+            sender.sendMessage(messageUtils.getMessage("failed-item-creation").replace("%item%", itemKey));
             return true;
         }
 
         if (target.getInventory().firstEmpty() == -1) {
-            target.getWorld().dropItemNaturally(target.getLocation(), rod);
+            target.getWorld().dropItemNaturally(target.getLocation(), item);
             sender.sendMessage(messageUtils.getMessage("give-full-inventory").replace("%player%", target.getName()));
         } else {
-            target.getInventory().addItem(rod);
+            target.getInventory().addItem(item);
             sender.sendMessage(messageUtils.getMessage("give-success")
-                    .replace("%item%", rod.getItemMeta().getDisplayName())
+                    .replace("%item%", item.getItemMeta().getDisplayName())
                     .replace("%player%", target.getName()));
         }
 

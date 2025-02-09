@@ -1,6 +1,6 @@
 package dev.reloadx.listeners;
 
-import dev.reloadx.OtherDrops;
+import dev.reloadx.OtherCore;
 import dev.reloadx.config.OtherFishingConfig;
 import dev.reloadx.utils.ColorUtils;
 import dev.reloadx.utils.DropProcessor;
@@ -19,11 +19,11 @@ import java.util.Map;
 import java.util.Optional;
 
 public class FishingListener implements Listener {
-    private final OtherDrops plugin;
+    private final OtherCore plugin;
     private final OtherFishingConfig otherFishingConfig;
     private final DropProcessor dropProcessor;
 
-    public FishingListener(OtherDrops plugin, OtherFishingConfig otherFishingConfig) {
+    public FishingListener(OtherCore plugin, OtherFishingConfig otherFishingConfig) {
         this.plugin = plugin;
         this.otherFishingConfig = otherFishingConfig;
         this.dropProcessor = new DropProcessor(plugin.getLogger());

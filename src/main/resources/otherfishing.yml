@@ -29,7 +29,7 @@ special_fishing_rods:
 
   obsidian:
     item: FISHING_ROD
-    display_name: "&#FFF733Obsidian Fishing Rod"
+    display_name: "#FFF733Obsidian Fishing Rod"
     lore:
       - "&7Forged with obsidian"
       - "&7It's resistant and powerful"

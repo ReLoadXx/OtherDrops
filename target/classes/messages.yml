@@ -1,4 +1,4 @@
-prefix: "&8[&bOtherDrops&8] &7"
+prefix: "&8[&bOtherCore&8] &7"
 
 general:
   reload-success: "#FFFFFFConfiguración recargada correctamente."
@@ -16,9 +16,20 @@ otherdrops:
   player-not-found: "&cEl jugador especificado no está en línea."
   failed-item-creation: "&cNo se pudo crear el ítem '%item%'."
 
+
 otherfishing:
   give-success: "&aHas dado la caña de pescar '%item%' a %player%."
   give-full-inventory: "&eEl inventario de %player% está lleno. El ítem ha sido arrojado al suelo."
   item-not-found: "&cLa caña de pescar '%item%' no existe en otherfishing.yml."
   player-not-found: "&cEl jugador especificado no está en línea."
   failed-item-creation: "&cNo se pudo crear la caña de pescar '%item%'."
+
+
+otherarmor:
+  give-success: "&aHas dado el un set de armadura a %player%."
+  give-full-inventory: "&eEl inventario de %player% está lleno. El set de armadura ha sido arrojado al suelo."
+  set-not-found: "&cEl set de armadura '%set%' no existe en otherarmor.yml."
+  player-not-found: "&cEl jugador especificado no está en línea."
+  failed-item-creation: "&cNo se pudo crear el set de armadura '%set%'."
+
+

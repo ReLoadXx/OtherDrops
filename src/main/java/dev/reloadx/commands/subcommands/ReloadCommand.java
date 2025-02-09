@@ -6,6 +6,7 @@ import dev.reloadx.commands.SubCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
+import java.io.File;
 
 public class ReloadCommand implements SubCommand {
     private final Plugin plugin;
@@ -48,11 +49,25 @@ public class ReloadCommand implements SubCommand {
         try {
             plugin.reloadConfig();
             messagesConfig.reload();
+
+            reloadFile("otherdrops.yml");
+            reloadFile("otherfishing.yml");
+
             sender.sendMessage(messageUtils.getMessage("reload-success"));
         } catch (Exception e) {
             sender.sendMessage(messageUtils.getMessage("reload-failure"));
             e.printStackTrace();
         }
         return true;
+    }
+
+    private void reloadFile(String fileName) {
+        File file = new File(plugin.getDataFolder(), fileName);
+        if (file.exists()) {
+            plugin.reloadConfig();
+            System.out.println(fileName + " recargado correctamente.");
+        } else {
+            System.out.println(fileName + " no encontrado.");
+        }
     }
 }

@@ -46,6 +46,11 @@ public class MessagesConfig {
             return message;
         }
 
+        message = this.messagesConfig.getString("otherarmor." + key);
+        if (message != null) {
+            return message;
+        }
+
         return "&cMensaje no encontrado: " + key;
     }
 }

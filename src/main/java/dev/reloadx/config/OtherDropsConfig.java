@@ -1,6 +1,6 @@
 package dev.reloadx.config;
 
-import dev.reloadx.OtherDrops;
+import dev.reloadx.OtherCore;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,16 +9,16 @@ import java.io.File;
 import java.io.IOException;
 
 public class OtherDropsConfig {
-    private final OtherDrops plugin;
+    private final OtherCore plugin;
     private File configFile;
     private FileConfiguration config;
 
-    public OtherDropsConfig(OtherDrops plugin) {
+    public OtherDropsConfig(OtherCore plugin) {
         this.plugin = plugin;
         loadConfig();
     }
 
-    public OtherDrops getPlugin() {
+    public OtherCore getPlugin() {
         return plugin;
     }
 
