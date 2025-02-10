@@ -10,42 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a38e9a02-baa4-4290-b891-cd332cb6bcb4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherArmorCommandManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/GiveArmorCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherArmorConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/otherarmors.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherDrops.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/GiveFishingRodCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/GiveFishingRodCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/GiveItemCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/GiveItemCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherDropsCommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherDropsCommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherFishingCommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherFishingCommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/ReloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/MessagesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/MessagesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherDropsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherDropsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherFishingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherFishingConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/listeners/FishingListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/listeners/FishingListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/otherarmors.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/otherarmors.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/otherdrops.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/otherdrops.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/otherfishing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/otherfishing.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherDrops.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/CommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/CommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/GiveFishingRodCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/subcommands/GiveFishingRodCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/GiveItemCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/subcommands/GiveItemCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/OtherDropsCommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/OtherDropsCommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/OtherFishingCommandManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/OtherFishingCommandManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/subcommands/ReloadCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/subcommands/ReloadCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/config/MessagesConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/config/MessagesConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/config/OtherDropsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/config/OtherDropsConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/config/OtherFishingConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/config/OtherFishingConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/listeners/FishingListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/listeners/FishingListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/listeners/MobDeathListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/listeners/MobDeathListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/messages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/messages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/otherdrops.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/otherdrops.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/otherfishing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/otherfishing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/otherarmors.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/otherarmors.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

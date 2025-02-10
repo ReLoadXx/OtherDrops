@@ -1,78 +1,109 @@
 items:
-  obsidian:
-    item: DIAMOND_SWORD
-    display_name: "#FFF733Obsidian Fishing Rod"
-    lore:
-      - "&7Forged with obsidian"
-      - "&7It's resistant and powerful"
-    mobs:
-      ZOMBIE:
-        drops:
-          - item: NETHERITE_SWORD
-            chance: 30.0
-            display_name: "#FFF733Netherite Sword"
-            lore:
-              - "#FFF733A very powerful sword"
-              - "&dWith ancient magic"
-            enchantments:
-              - SHARPNESS 5
-              - LOOTING 3
-            quantity: 1
-          - item: DIAMOND_SWORD
-            chance: 20.0
-            display_name: "Diamond Sword"
-            lore:
-              - "&7A sharp and powerful sword"
-            quantity: 1
-      SKELETON:
-        drops:
-          - item: GOLDEN_APPLE
-            chance: 50.0
-            display_name: "Golden Apple"
-            lore:
-              - "&7A rare golden apple"
-            quantity: 2
-
-  diamond_sword_of_legends:
-    item: DIAMOND_SWORD
-    display_name: "#A3D8F4Diamond Sword of Legends"
-    lore:
-      - "&7Forged with the finest diamonds"
-      - "&7Its blade glows with magic"
-    mobs:
-      ZOMBIE:
-        drops:
-          - item: DIAMOND_SWORD
-            chance: 20.0
-            display_name: "Diamond Sword"
-            lore:
-              - "&7A sharp and powerful sword"
-            quantity: 1
-      CREEPER:
-        drops:
-          - item: TNT
-            chance: 80.0
-            display_name: "Explosive TNT"
-            lore:
-              - "&7An explosive item from a creeper"
-            quantity: 3
+#  obsidian:
+#    item: DIAMOND_SWORD
+#    display_name: "#FFF733Obsidian Fishing Rod"
+#    lore:
+#      - "&7Forged with obsidian"
+#      - "&7It's resistant and powerful"
+#    mobs:
+#      ZOMBIE:
+#        drops:
+#          - item: NETHERITE_SWORD
+#            chance: 30.0
+#            display_name: "#FFF733Netherite Sword"
+#            lore:
+#              - "#FFF733A very powerful sword"
+#              - "&dWith ancient magic"
+#            enchantments:
+#              - SHARPNESS 5
+#              - LOOTING 3
+#            quantity: 1
+#          - item: DIAMOND_SWORD
+#            chance: 20.0
+#            display_name: "Diamond Sword"
+#            lore:
+#              - "&7A sharp and powerful sword"
+#            quantity: 1
+#      SKELETON:
+#        drops:
+#          - item: GOLDEN_APPLE
+#            chance: 50.0
+#            display_name: "Golden Apple"
+#            lore:
+#              - "&7A rare golden apple"
+#            quantity: 2
+#
+#  diamond_sword_of_legends:
+#    item: DIAMOND_SWORD
+#    display_name: "#A3D8F4Diamond Sword of Legends"
+#    lore:
+#      - "&7Forged with the finest diamonds"
+#      - "&7Its blade glows with magic"
+#    mobs:
+#      ZOMBIE:
+#        drops:
+#          - item: DIAMOND_SWORD
+#            chance: 20.0
+#            display_name: "Diamond Sword"
+#            lore:
+#              - "&7A sharp and powerful sword"
+#            quantity: 1
+#      CREEPER:
+#        drops:
+#          - item: TNT
+#            chance: 80.0
+#            display_name: "Explosive TNT"
+#            lore:
+#              - "&7An explosive item from a creeper"
+#            quantity: 3
   global_drops:
     item: all
     display_name: all
     mobs:
       ZOMBIE:
         drops:
-          - item: WOODEN_SWORD
-            chance: 90.0
-            display_name: "Iron Ingot"
+          - item: LIME_DYE
+            chance: 100.0
+            display_name: "#71ED7BEstandarte Maldito"
             lore:
-              - "&7A piece of iron"
-            quantity: 2
+              - "#97F29FAÃºn gotea la esencia del no-muerto"
+              - "#82F0A7Usado para craftear la &l#83F0E4Key del Sepulcro"
+              - " "
+              - "#A4F4BFPara mÃ¡s informaciÃ³n, usa /ayuda."
+            quantity: 1
       SKELETON:
         drops:
-          - item: BONE
-            chance: 60.0
-            display_name: "Ancient Bone"
+          - item: WITHE_DYE
+            chance: 100.0
+            display_name: "#A8C5F1Fragmento de Alma Perdida"
             lore:
-              - "&7A bone from an ancient skeleton"
-            quantity: 3
+              - "#BED4F6Este fragmento resuena con el eco de almas olvidadas."
+              - "#9CA8EFUsado para craftear la &l#A59BEELlave del Olvido"
+              - " "
+              - "#CCB3F2Para mÃ¡s informaciÃ³n, usa /ayuda."
+            quantity: 1
+      BLAZE:
+        drops:
+          - item: ORANGE_DYE
+            chance: 100.0
+            display_name: "#E56F3FFragmento de Llama Abisal"
+            lore:
+              - "#EB916CUna llama eterna, nacida del abismo."
+              - "#9CA8EFUsado Usado para craftear la &l#EAD065Llave del Infierno."
+              - " "
+              - "#EABA7APara mÃ¡s informaciÃ³n, usa /ayuda."
+            quantity: 1
+      ELDER_GUARDIAN:
+        drops:
+          - item: FISHING_ROD
+            chance: 100.0
+            display_name: "#1E90FFCaÃ±a del Abismo Submarino"
+            lore:
+              - "#00BFFFCreada por los guardianes del templo sumergido en las profundidades."
+              - "#7FFFD4Pesca las almas perdidas que habitan las aguas prohibidas."
+              - "#FF6347Solo los mÃ¡s valientes pueden manejar su poder."
+              - " "
+              - "#00BFFFForjada por el &l#FF4500Anciano GuardiÃ¡n&f del templo abisal."
+              - " "
+              - "#A4F4BFPara mÃ¡s informaciÃ³n, usa /ayuda."
+            quantity: 1

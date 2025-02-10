@@ -33,6 +33,8 @@ public class OtherCore extends JavaPlugin {
         MessageUtils messageUtils = new MessageUtils(messagesConfig);
 
         OtherDropsConfig configManager = new OtherDropsConfig(this);
+
+        new CommandManager(this, messageUtils, messagesConfig);
         new OtherFishingCommandManager(this, otherFishingConfig, messageUtils);
         new OtherDropsCommandManager(this, configManager, messageUtils);
 

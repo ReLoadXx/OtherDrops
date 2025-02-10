@@ -18,14 +18,14 @@ sets:
         - THORNS 2
     leggings:
       item: DIAMOND_LEGGINGS
-      display_name: ""Speed Leggings"
+      display_name: "Speed Leggings"
       lore:
         - "&7These leggings grant speed."
       enchantments:
         - PROTECTION 4
     boots:
       item: DIAMOND_BOOTS
-      display_name: "#bbbbbb Speed Boots"
+      display_name: "Speed Boots"
       lore:
         - "&7These boots grant speed."
       enchantments:
