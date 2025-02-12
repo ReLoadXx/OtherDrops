@@ -12,16 +12,17 @@ import dev.reloadx.listeners.MobDeathListener;
 import dev.reloadx.listeners.FishingListener;
 import dev.reloadx.utils.MessageUtils;
 import dev.reloadx.utils.StartupManager;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class OtherCore extends JavaPlugin {
 
     private OtherFishingConfig otherFishingConfig;
     private OtherArmorConfig otherArmorConfig;
+    private static boolean hasExecutableItems = false;
 
     @Override
     public void onEnable() {
-
         otherFishingConfig = new OtherFishingConfig(this);
         otherArmorConfig = new OtherArmorConfig(this);
 
@@ -31,25 +32,21 @@ public class OtherCore extends JavaPlugin {
 
         MessagesConfig messagesConfig = new MessagesConfig(this);
         MessageUtils messageUtils = new MessageUtils(messagesConfig);
-
         OtherDropsConfig configManager = new OtherDropsConfig(this);
 
         new CommandManager(this, messageUtils, messagesConfig);
         new OtherFishingCommandManager(this, otherFishingConfig, messageUtils);
         new OtherDropsCommandManager(this, configManager, messageUtils);
-
         new OtherArmorCommandManager(this, otherArmorConfig, messageUtils);
 
         getServer().getPluginManager().registerEvents(new MobDeathListener(configManager), this);
         getServer().getPluginManager().registerEvents(new FishingListener(this, otherFishingConfig), this);
 
-    }
-
-    public OtherFishingConfig getOtherFishingConfig() {
-        return otherFishingConfig;
-    }
-
-    public OtherArmorConfig getOtherArmorConfig() {
-        return otherArmorConfig;
+        // Detectar si Executable Items está disponible
+        Plugin executableItems = getServer().getPluginManager().getPlugin("ExecutableItems");
+        if (executableItems != null && executableItems.isEnabled()) {
+            getLogger().info("[OtherCore] Executable Items detectado y vinculado!");
+            hasExecutableItems = true;
+        }
     }
 }

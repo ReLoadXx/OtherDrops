@@ -22,6 +22,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.ssomar.score</groupId>
+            <artifactId>SCore</artifactId>
+            <version>4.24.1.15</version>
+            <scope>system</scope>
+            <systemPath>C:/MinecraftTodo/Plugins/Otherdrops/src/main/resources/SCore.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.21.4-R0.1-SNAPSHOT</version>

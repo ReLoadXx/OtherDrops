@@ -64,46 +64,45 @@ items:
         drops:
           - item: LIME_DYE
             chance: 100.0
-            display_name: "#71ED7BEstandarte Maldito"
+            display_name: "&8[&aᴛᴏᴋᴇᴍ ᴍᴀʟᴅɪᴛᴏ&8]"
             lore:
-              - "#97F29FAÃºn gotea la esencia del no-muerto"
-              - "#82F0A7Usado para craftear la &l#83F0E4Key del Sepulcro"
+              - "&7Aun gotea la esencia del no-muerto"
+              - "&7Usado para craftear la &l&aKey del Sepulcro"
               - " "
-              - "#A4F4BFPara mÃ¡s informaciÃ³n, usa /ayuda."
+              - "&7Para más información, usa &l/ayuda."
             quantity: 1
       SKELETON:
         drops:
-          - item: WITHE_DYE
+          - item: GRAY_DYE
             chance: 100.0
-            display_name: "#A8C5F1Fragmento de Alma Perdida"
+            display_name: "&8[&fᴛᴏᴋᴇᴍ ᴘᴇʀᴅɪᴅo&8]"
             lore:
-              - "#BED4F6Este fragmento resuena con el eco de almas olvidadas."
-              - "#9CA8EFUsado para craftear la &l#A59BEELlave del Olvido"
+              - "&7Este fragmento resuena con el eco de almas olvidadas."
+              - "&7Usado para craftear la &l&fLlave del Olvido"
               - " "
-              - "#CCB3F2Para mÃ¡s informaciÃ³n, usa /ayuda."
+              - "&7Para mas informacion, usa &l/ayuda."
             quantity: 1
       BLAZE:
         drops:
           - item: ORANGE_DYE
             chance: 100.0
-            display_name: "#E56F3FFragmento de Llama Abisal"
+            display_name: "&8[&eᴛᴏᴋᴇᴍ ᴀʙɪꜱᴀʟ&8]"
             lore:
-              - "#EB916CUna llama eterna, nacida del abismo."
-              - "#9CA8EFUsado Usado para craftear la &l#EAD065Llave del Infierno."
+              - "&7Una llama eterna, nacida del abismo."
+              - "&7Usado Usado para craftear la &l&eLlave del Infierno."
               - " "
-              - "#EABA7APara mÃ¡s informaciÃ³n, usa /ayuda."
+              - "&7Para mas informacion, usa &l/ayuda."
             quantity: 1
       ELDER_GUARDIAN:
         drops:
           - item: FISHING_ROD
             chance: 100.0
-            display_name: "#1E90FFCaÃ±a del Abismo Submarino"
+            display_name: "&8[#795BFFᴀʙɪꜱᴍᴏ ꜱᴜʙᴍᴀʀɪɴᴏ&8]"
             lore:
-              - "#00BFFFCreada por los guardianes del templo sumergido en las profundidades."
-              - "#7FFFD4Pesca las almas perdidas que habitan las aguas prohibidas."
-              - "#FF6347Solo los mÃ¡s valientes pueden manejar su poder."
+              - "&7Pesca almas perdidas que habitan aguas prohibidas."
+              - "&7Solo los mas valientes pueden manejar su poder."
               - " "
-              - "#00BFFFForjada por el &l#FF4500Anciano GuardiÃ¡n&f del templo abisal."
+              - "&7Al pescar con ella, puedes &l#795BFFobtener&7 un &l#795BFFPase del Nether."
               - " "
-              - "#A4F4BFPara mÃ¡s informaciÃ³n, usa /ayuda."
+              - "&7Para mas informacion, usa &l/ayuda."
             quantity: 1

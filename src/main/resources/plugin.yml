@@ -4,6 +4,7 @@ version: 1.0.1
 author: ReLoadX
 api-version: 1.19
 prefix: "OtherCore"
+softdepend: [ExecutableItems, SCore]
 
 commands:
   othercore:

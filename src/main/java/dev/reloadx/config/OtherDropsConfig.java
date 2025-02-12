@@ -54,5 +54,4 @@ public class OtherDropsConfig {
             e.printStackTrace();
         }
     }
-
 }

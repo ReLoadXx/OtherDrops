@@ -42,3 +42,25 @@ special_fishing_rods:
           - "&7With ancient magic"
         enchantments:
           - LOOTING 3
+  Abismo:
+    item: FISHING_ROD
+    display_name: "&8[#795BFFᴀʙɪꜱᴍᴏ ꜱᴜʙᴍᴀʀɪɴᴏ&8]"
+    lore:
+      - "&7Pesca almas perdidas que habitan aguas prohibidas."
+      - "&7Solo los mas valientes pueden manejar su poder."
+      - " "
+      - "&7Al pescar con ella, puedes obtener un &l#795BFFPase del Nether."
+      - " "
+      - "&7Para mas informacion, usa &l/ayuda."
+    drops:
+      - item: NETHERITE_SWORD
+        chance: 30.0
+        display_name: "Netherite Sword"
+        lore:
+          - "&7A very powerful sword"
+          - "&7With ancient magic"
+        enchantments:
+          - LOOTING 3
+      - item: EI_Free_Bucket5
+        chance: 80.0
+        display_name: "EI_Free_Bucket5"

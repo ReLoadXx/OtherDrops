@@ -1,10 +1,12 @@
 package dev.reloadx.utils;
 
-import org.bukkit.Material;
+import com.ssomar.score.api.executableitems.ExecutableItemsAPI;
+import com.ssomar.score.api.executableitems.config.ExecutableItemInterface;
+import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -12,9 +14,19 @@ import java.util.logging.Logger;
 public class DropProcessor {
     private final Random random = new Random();
     private final Logger logger;
+    private static boolean hasExecutableItems = false;
 
     public DropProcessor(Logger logger) {
         this.logger = logger;
+        checkExecutableItemsPresence();
+    }
+
+    private void checkExecutableItemsPresence() {
+        Plugin executableItems = Bukkit.getPluginManager().getPlugin("ExecutableItems");
+        if (executableItems != null && executableItems.isEnabled()) {
+            logger.info("[DropProcessor] ¡ExecutableItems conectado!");
+            hasExecutableItems = true;
+        }
     }
 
     public Optional<ItemStack> processDrops(List<Map<?, ?>> drops) {
@@ -29,7 +41,7 @@ public class DropProcessor {
 
                 dropEntries.add(new DropEntry(weight, dropMap));
             } catch (Exception e) {
-                //LOG DEL FUTURO
+                logger.warning("Error procesando la caída: " + e.getMessage());
             }
         }
 
@@ -45,6 +57,20 @@ public class DropProcessor {
             currentWeight += entry.weight;
             if (roll < currentWeight) {
                 if (entry.dropData != null) {
+                    if (hasExecutableItems && entry.dropData.containsKey("display_name")) {
+                        String displayName = (String) entry.dropData.get("display_name");
+                        if (displayName.startsWith("EI_")) {
+                            String itemNameWithoutPrefix = displayName.substring(3);
+
+                            Optional<ExecutableItemInterface> eiOpt = ExecutableItemsAPI.getExecutableItemsManager().getExecutableItem(itemNameWithoutPrefix);
+
+                            if (eiOpt.isPresent()) {
+                                ItemStack item = eiOpt.get().buildItem(1, Optional.empty(), Optional.empty());
+                                return Optional.of(item);
+                            }
+                        }
+                    }
+
                     ConfigurationSection itemConfig = convertMapToConfigSection(entry.dropData);
                     ItemStack item = ItemUtils.createItem(itemConfig);
 
