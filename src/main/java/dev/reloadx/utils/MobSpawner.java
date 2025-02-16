@@ -2,11 +2,11 @@ package dev.reloadx.utils;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Map;
 import java.util.logging.Logger;
 
 public class MobSpawner {
@@ -16,16 +16,17 @@ public class MobSpawner {
         this.logger = logger;
     }
 
-    public void spawnMob(Location location, Map<?, ?> mobConfig) {
-        if (!mobConfig.containsKey("mob")) {
+    public void spawnMob(Location location, ConfigurationSection mobConfig) {
+        if (!mobConfig.contains("mob")) {
             return;
         }
 
-        String mobTypeStr = (String) mobConfig.get("mob");
+        String mobTypeStr = mobConfig.getString("mob").toUpperCase();
         EntityType mobType;
         try {
-            mobType = EntityType.valueOf(mobTypeStr.toUpperCase());
+            mobType = EntityType.valueOf(mobTypeStr);
         } catch (IllegalArgumentException e) {
+            logger.warning("Tipo de mob inválido: " + mobTypeStr);
             return;
         }
 
@@ -36,32 +37,33 @@ public class MobSpawner {
 
         LivingEntity entity = (LivingEntity) world.spawnEntity(location, mobType);
 
-        if (mobConfig.containsKey("display_name")) {
-            entity.setCustomName((String) mobConfig.get("display_name"));
+        if (mobConfig.contains("display_name")) {
+            entity.setCustomName(ColorUtils.hex(mobConfig.getString("display_name")));
             entity.setCustomNameVisible(true);
         }
 
-        if (mobConfig.containsKey("equipment")) {
-            setEntityEquipment(entity, (Map<?, ?>) mobConfig.get("equipment"));
+        if (mobConfig.contains("equipment")) {
+            setEntityEquipment(entity, mobConfig.getConfigurationSection("equipment"));
         }
     }
 
-    private static void setEntityEquipment(LivingEntity entity, Map<?, ?> equipmentConfig) {
-        if (equipmentConfig.containsKey("helmet")) {
-            entity.getEquipment().setHelmet(new ItemStack(org.bukkit.Material.valueOf(((String) equipmentConfig.get("helmet")).toUpperCase())));
+    private static void setEntityEquipment(LivingEntity entity, ConfigurationSection equipmentConfig) {
+        if (equipmentConfig == null) return;
+
+        if (equipmentConfig.contains("helmet")) {
+            entity.getEquipment().setHelmet(ItemUtils.createItem(equipmentConfig.getConfigurationSection("helmet")));
         }
-        if (equipmentConfig.containsKey("chestplate")) {
-            entity.getEquipment().setChestplate(new ItemStack(org.bukkit.Material.valueOf(((String) equipmentConfig.get("chestplate")).toUpperCase())));
+        if (equipmentConfig.contains("chestplate")) {
+            entity.getEquipment().setChestplate(ItemUtils.createItem(equipmentConfig.getConfigurationSection("chestplate")));
         }
-        if (equipmentConfig.containsKey("leggings")) {
-            entity.getEquipment().setLeggings(new ItemStack(org.bukkit.Material.valueOf(((String) equipmentConfig.get("leggings")).toUpperCase())));
+        if (equipmentConfig.contains("leggings")) {
+            entity.getEquipment().setLeggings(ItemUtils.createItem(equipmentConfig.getConfigurationSection("leggings")));
         }
-        if (equipmentConfig.containsKey("boots")) {
-            entity.getEquipment().setBoots(new ItemStack(org.bukkit.Material.valueOf(((String) equipmentConfig.get("boots")).toUpperCase())));
+        if (equipmentConfig.contains("boots")) {
+            entity.getEquipment().setBoots(ItemUtils.createItem(equipmentConfig.getConfigurationSection("boots")));
         }
-        if (equipmentConfig.containsKey("weapon")) {
-            entity.getEquipment().setItemInMainHand(new ItemStack(org.bukkit.Material.valueOf(((String) equipmentConfig.get("weapon")).toUpperCase())));
+        if (equipmentConfig.contains("weapon")) {
+            entity.getEquipment().setItemInMainHand(ItemUtils.createItem(equipmentConfig.getConfigurationSection("weapon")));
         }
     }
 }
-

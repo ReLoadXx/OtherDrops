@@ -42,6 +42,43 @@ special_fishing_rods:
           - "&7With ancient magic"
         enchantments:
           - LOOTING 3
+      - mob: ZOMBIE
+        chance: 100.0
+        display_name: "&2Undead Fisherman"
+        equipment:
+          helmet:
+            item: DIAMOND_HELMET
+            enchantments:
+              - "PROTECTION_ENVIRONMENTAL 4"
+              - "UNBREAKING 3"
+            hide_enchants: true
+          chestplate:
+            item: DIAMOND_CHESTPLATE
+            enchantments:
+              - "PROTECTION_ENVIRONMENTAL 4"
+              - "UNBREAKING 3"
+              - "THORNS 2"
+            hide_enchants: true
+          leggings:
+            item: DIAMOND_LEGGINGS
+            enchantments:
+              - "PROTECTION_ENVIRONMENTAL 4"
+              - "UNBREAKING 3"
+          boots:
+            item: DIAMOND_BOOTS
+            enchantments:
+              - "FEATHER_FALLING 4"
+              - "PROTECTION_ENVIRONMENTAL 4"
+              - "UNBREAKING 3"
+          weapon:
+            item: DIAMOND_SWORD
+            display_name: "&4Cursed Blade"
+            lore:
+              - "&7Una espada maldita por las sombras..."
+            enchantments:
+              - "SHARPNESS 5"
+              - "UNBREAKING 3"
+              - "LOOTING 3"
   abismo:
     item: FISHING_ROD
     display_name: "&8[#795BFFᴀʙɪꜱᴍᴏ ꜱᴜʙᴍᴀʀɪɴᴏ&8]"
@@ -64,12 +101,4 @@ special_fishing_rods:
       - item: EI_Free_Bucket5
         chance: 80.0
         display_name: "EI_Free_Bucket5"
-      - mob: ZOMBIE
-        chance: 100.0
-        display_name: "&2Undead Fisherman"
-        equipment:
-          helmet: DIAMOND_HELMET
-          chestplate: DIAMOND_CHESTPLATE
-          leggings: DIAMOND_LEGGINGS
-          boots: DIAMOND_BOOTS
-          weapon: DIAMOND_SWORD
+

@@ -42,8 +42,9 @@ public class ItemUtils {
                     meta.addEnchant(enchantment, level, true);
                 }
             }
-
-            meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+            if (itemConfig.getBoolean("hide_enchants", false)) {
+                meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+            }
 
             item.setItemMeta(meta);
         }

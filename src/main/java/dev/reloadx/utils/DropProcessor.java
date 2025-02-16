@@ -60,15 +60,19 @@ public class DropProcessor {
             currentWeight += entry.weight;
             if (roll < currentWeight) {
                 if (entry.dropData != null) {
-                    if (entry.dropData.containsKey("mob")) {
-                        mobSpawner.spawnMob(location, entry.dropData);
-                        return Optional.of(entry.dropData);
-                    } else if (hasExecutableItems && entry.dropData.containsKey("display_name")) {
-                        String displayName = (String) entry.dropData.get("display_name");
+                    ConfigurationSection config = convertMapToConfigSection(entry.dropData);
+
+                    if (config.contains("mob")) {
+                        mobSpawner.spawnMob(location, config);
+                        return Optional.of(config);
+                    } else if (hasExecutableItems && config.contains("display_name")) {
+                        String displayName = config.getString("display_name", "");
                         if (displayName.startsWith("EI_")) {
                             String itemNameWithoutPrefix = displayName.substring(3);
 
-                            Optional<ExecutableItemInterface> eiOpt = ExecutableItemsAPI.getExecutableItemsManager().getExecutableItem(itemNameWithoutPrefix);
+                            Optional<ExecutableItemInterface> eiOpt = ExecutableItemsAPI
+                                    .getExecutableItemsManager()
+                                    .getExecutableItem(itemNameWithoutPrefix);
 
                             if (eiOpt.isPresent()) {
                                 ItemStack item = eiOpt.get().buildItem(1, Optional.empty(), Optional.empty());
@@ -77,14 +81,9 @@ public class DropProcessor {
                         }
                     }
 
-                    ConfigurationSection itemConfig = convertMapToConfigSection(entry.dropData);
-                    ItemStack item = ItemUtils.createItem(itemConfig);
+                    ItemStack item = ItemUtils.createItem(config);
 
-                    int quantity = 1;
-                    if (entry.dropData.containsKey("quantity")) {
-                        quantity = ((Number) entry.dropData.get("quantity")).intValue();
-                    }
-
+                    int quantity = config.getInt("quantity", 1);
                     item.setAmount(quantity);
                     return Optional.of(item);
                 } else {
@@ -98,9 +97,13 @@ public class DropProcessor {
 
     private ConfigurationSection convertMapToConfigSection(Map<?, ?> map) {
         YamlConfiguration config = new YamlConfiguration();
-        for (Map.Entry<?, ?> entry : map.entrySet()) {
-            config.set(entry.getKey().toString(), entry.getValue());
-        }
+        map.forEach((key, value) -> {
+            if (value instanceof Map) {
+                config.createSection(key.toString(), (Map<?, ?>) value);
+            } else {
+                config.set(key.toString(), value);
+            }
+        });
         return config;
     }
 
