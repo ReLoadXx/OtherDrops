@@ -3,6 +3,8 @@ package dev.reloadx.commands;
 import dev.reloadx.OtherCore;
 import dev.reloadx.commands.subcommands.ReloadCommand;
 import dev.reloadx.config.MessagesConfig;
+import dev.reloadx.config.OtherDropsConfig;
+import dev.reloadx.config.OtherFishingConfig;
 import dev.reloadx.utils.MessageUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,8 +17,9 @@ import java.util.*;
 public class CommandManager implements CommandExecutor, TabCompleter {
     private final Map<String, SubCommand> subcommands = new HashMap<>();
 
-    public CommandManager(OtherCore plugin, MessageUtils messageUtils, MessagesConfig messagesConfig) {
-        registerSubCommand(new ReloadCommand(plugin, messageUtils, messagesConfig));
+    public CommandManager(OtherCore plugin, MessageUtils messageUtils, MessagesConfig messagesConfig,
+                          OtherDropsConfig otherDropsConfig, OtherFishingConfig otherFishingConfig) {
+        registerSubCommand(new ReloadCommand(plugin, messageUtils, messagesConfig, otherDropsConfig, otherFishingConfig));
 
         Objects.requireNonNull(plugin.getCommand("othercore")).setExecutor(this);
         Objects.requireNonNull(plugin.getCommand("othercore")).setTabCompleter(this);

@@ -29,6 +29,10 @@ public class OtherFishingConfig {
         return config;
     }
 
+    public void reload() {
+        loadConfig();
+    }
+
     public void saveConfig() {
         try {
             config.save(configFile);

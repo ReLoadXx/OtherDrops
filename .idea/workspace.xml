@@ -11,15 +11,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a38e9a02-baa4-4290-b891-cd332cb6bcb4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/utils/DropProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/utils/DropProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/utils/ItemUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/utils/ItemUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/utils/MobSpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/utils/MobSpawner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/otherfishing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/otherfishing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/ReloadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherDropsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherDropsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherFishingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherFishingConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/utils/DropProcessor$DropEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/utils/DropProcessor$DropEntry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/utils/DropProcessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/utils/DropProcessor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/utils/MobSpawner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/utils/MobSpawner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/otherfishing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/otherfishing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

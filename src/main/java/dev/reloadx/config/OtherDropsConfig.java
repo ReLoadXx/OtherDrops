@@ -18,10 +18,6 @@ public class OtherDropsConfig {
         loadConfig();
     }
 
-    public OtherCore getPlugin() {
-        return plugin;
-    }
-
     private void loadConfig() {
         configFile = new File(plugin.getDataFolder(), "otherdrops.yml");
         if (!configFile.exists()) {
@@ -42,6 +38,10 @@ public class OtherDropsConfig {
         return items;
     }
 
+    public void reload() {
+        loadConfig();
+    }
+
     public void saveConfig() {
         if (configFile == null || config == null) {
             plugin.getLogger().severe("[OtherDrops] Error: Configuración no cargada, no se puede guardar.");
@@ -53,5 +53,9 @@ public class OtherDropsConfig {
             plugin.getLogger().severe("[OtherDrops] No se pudo guardar otherdrops.yml!");
             e.printStackTrace();
         }
+    }
+
+    public OtherCore getPlugin() {
+        return plugin;
     }
 }

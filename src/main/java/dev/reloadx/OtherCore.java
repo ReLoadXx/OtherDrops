@@ -34,7 +34,7 @@ public class OtherCore extends JavaPlugin {
         MessageUtils messageUtils = new MessageUtils(messagesConfig);
         OtherDropsConfig configManager = new OtherDropsConfig(this);
 
-        new CommandManager(this, messageUtils, messagesConfig);
+        new CommandManager(this, messageUtils, messagesConfig, configManager, otherFishingConfig);
         new OtherFishingCommandManager(this, otherFishingConfig, messageUtils);
         new OtherDropsCommandManager(this, configManager, messageUtils);
         new OtherArmorCommandManager(this, otherArmorConfig, messageUtils);
@@ -42,7 +42,6 @@ public class OtherCore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MobDeathListener(configManager), this);
         getServer().getPluginManager().registerEvents(new FishingListener(this, otherFishingConfig), this);
 
-        // Detectar si Executable Items está disponible
         Plugin executableItems = getServer().getPluginManager().getPlugin("ExecutableItems");
         if (executableItems != null && executableItems.isEnabled()) {
             getLogger().info("[OtherCore] Executable Items detectado y vinculado!");

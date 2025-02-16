@@ -1,22 +1,28 @@
 package dev.reloadx.commands.subcommands;
 
 import dev.reloadx.config.MessagesConfig;
+import dev.reloadx.config.OtherDropsConfig;
+import dev.reloadx.config.OtherFishingConfig;
 import dev.reloadx.utils.MessageUtils;
 import dev.reloadx.commands.SubCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
-import java.io.File;
 
 public class ReloadCommand implements SubCommand {
     private final Plugin plugin;
     private final MessageUtils messageUtils;
     private final MessagesConfig messagesConfig;
+    private final OtherDropsConfig otherDropsConfig;
+    private final OtherFishingConfig otherFishingConfig;
 
-    public ReloadCommand(Plugin plugin, MessageUtils messageUtils, MessagesConfig messagesConfig) {
+    public ReloadCommand(Plugin plugin, MessageUtils messageUtils, MessagesConfig messagesConfig,
+                         OtherDropsConfig otherDropsConfig, OtherFishingConfig otherFishingConfig) {
         this.plugin = plugin;
         this.messageUtils = messageUtils;
         this.messagesConfig = messagesConfig;
+        this.otherDropsConfig = otherDropsConfig;
+        this.otherFishingConfig = otherFishingConfig;
     }
 
     @Override
@@ -50,8 +56,8 @@ public class ReloadCommand implements SubCommand {
             plugin.reloadConfig();
             messagesConfig.reload();
 
-            reloadFile("otherdrops.yml");
-            reloadFile("otherfishing.yml");
+            otherDropsConfig.reload();
+            otherFishingConfig.reload();
 
             sender.sendMessage(messageUtils.getMessage("reload-success"));
         } catch (Exception e) {
@@ -59,15 +65,5 @@ public class ReloadCommand implements SubCommand {
             e.printStackTrace();
         }
         return true;
-    }
-
-    private void reloadFile(String fileName) {
-        File file = new File(plugin.getDataFolder(), fileName);
-        if (file.exists()) {
-            plugin.reloadConfig();
-            System.out.println(fileName + " recargado correctamente.");
-        } else {
-            System.out.println(fileName + " no encontrado.");
-        }
     }
 }
