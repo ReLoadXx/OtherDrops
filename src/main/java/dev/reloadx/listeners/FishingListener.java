@@ -64,9 +64,14 @@ public class FishingListener implements Listener {
 
     private void handleFishingEvent(PlayerFishEvent event, Player player, ConfigurationSection rodConfig) {
         List<Map<?, ?>> drops = rodConfig.getMapList("drops");
-        Optional<ItemStack> optionalDrop = dropProcessor.processDrops(drops);
+        Optional<Object> optionalDrop = dropProcessor.processDrops(drops, player.getLocation());
 
-        optionalDrop.ifPresent(item -> player.getWorld().dropItemNaturally(player.getLocation(), item));
+
+        optionalDrop.ifPresent(drop -> {
+            if (drop instanceof ItemStack) {
+                player.getWorld().dropItemNaturally(player.getLocation(), (ItemStack) drop);
+            }
+        });
 
         event.getHook().remove();
     }

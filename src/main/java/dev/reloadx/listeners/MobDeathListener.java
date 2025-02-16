@@ -61,7 +61,11 @@ public class MobDeathListener implements Listener {
 
             List<Map<?, ?>> drops = mobs.getMapList(mobKey + ".drops");
             if (!drops.isEmpty()) {
-                dropProcessor.processDrops(drops).ifPresent(event.getDrops()::add);
+                dropProcessor.processDrops(drops, event.getEntity().getLocation()).ifPresent(drop -> {
+                    if (drop instanceof ItemStack) {
+                        event.getDrops().add((ItemStack) drop);
+                    }
+                });
                 lootApplied = true;
             }
         }
@@ -73,7 +77,11 @@ public class MobDeathListener implements Listener {
                 if (mobs != null && mobs.contains(mobKey)) {
                     List<Map<?, ?>> drops = mobs.getMapList(mobKey + ".drops");
                     if (!drops.isEmpty()) {
-                        dropProcessor.processDrops(drops).ifPresent(event.getDrops()::add);
+                        dropProcessor.processDrops(drops, event.getEntity().getLocation()).ifPresent(drop -> {
+                            if (drop instanceof ItemStack) {
+                                event.getDrops().add((ItemStack) drop);
+                            }
+                        });
                     }
                 }
             }

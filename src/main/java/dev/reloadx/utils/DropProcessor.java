@@ -3,6 +3,7 @@ package dev.reloadx.utils;
 import com.ssomar.score.api.executableitems.ExecutableItemsAPI;
 import com.ssomar.score.api.executableitems.config.ExecutableItemInterface;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,9 +16,11 @@ public class DropProcessor {
     private final Random random = new Random();
     private final Logger logger;
     private static boolean hasExecutableItems = false;
+    private final MobSpawner mobSpawner;
 
     public DropProcessor(Logger logger) {
         this.logger = logger;
+        this.mobSpawner = new MobSpawner(logger);
         checkExecutableItemsPresence();
     }
 
@@ -29,7 +32,7 @@ public class DropProcessor {
         }
     }
 
-    public Optional<ItemStack> processDrops(List<Map<?, ?>> drops) {
+    public Optional<Object> processDrops(List<Map<?, ?>> drops, Location location) {
         List<DropEntry> dropEntries = new ArrayList<>();
         int totalWeight = 0;
 
@@ -57,7 +60,10 @@ public class DropProcessor {
             currentWeight += entry.weight;
             if (roll < currentWeight) {
                 if (entry.dropData != null) {
-                    if (hasExecutableItems && entry.dropData.containsKey("display_name")) {
+                    if (entry.dropData.containsKey("mob")) {
+                        mobSpawner.spawnMob(location, entry.dropData);
+                        return Optional.of(entry.dropData);
+                    } else if (hasExecutableItems && entry.dropData.containsKey("display_name")) {
                         String displayName = (String) entry.dropData.get("display_name");
                         if (displayName.startsWith("EI_")) {
                             String itemNameWithoutPrefix = displayName.substring(3);
