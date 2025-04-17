@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="OtherDrops:jar">
+  <artifact type="jar" name="OtherCore:jar">
     <output-path>D:/Craftalia V1.0/Servidores/MisPlugins/plugins</output-path>
-    <root id="archive" name="OtherDrops.jar">
-      <element id="module-output" name="OtherDrops" />
+    <root id="archive" name="OtherCore.jar">
+      <element id="module-output" name="OtherCore" />
     </root>
   </artifact>
 </component>

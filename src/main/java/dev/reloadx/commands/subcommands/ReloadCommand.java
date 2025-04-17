@@ -3,6 +3,7 @@ package dev.reloadx.commands.subcommands;
 import dev.reloadx.config.MessagesConfig;
 import dev.reloadx.config.OtherDropsConfig;
 import dev.reloadx.config.OtherFishingConfig;
+import dev.reloadx.config.OtherBlocksConfig;
 import dev.reloadx.utils.MessageUtils;
 import dev.reloadx.commands.SubCommand;
 import org.bukkit.command.Command;
@@ -15,14 +16,16 @@ public class ReloadCommand implements SubCommand {
     private final MessagesConfig messagesConfig;
     private final OtherDropsConfig otherDropsConfig;
     private final OtherFishingConfig otherFishingConfig;
+    private final OtherBlocksConfig otherBlocksConfig;
 
     public ReloadCommand(Plugin plugin, MessageUtils messageUtils, MessagesConfig messagesConfig,
-                         OtherDropsConfig otherDropsConfig, OtherFishingConfig otherFishingConfig) {
+                         OtherDropsConfig otherDropsConfig, OtherFishingConfig otherFishingConfig, OtherBlocksConfig otherBlocksConfig) {
         this.plugin = plugin;
         this.messageUtils = messageUtils;
         this.messagesConfig = messagesConfig;
         this.otherDropsConfig = otherDropsConfig;
         this.otherFishingConfig = otherFishingConfig;
+        this.otherBlocksConfig = otherBlocksConfig;
     }
 
     @Override
@@ -55,9 +58,9 @@ public class ReloadCommand implements SubCommand {
         try {
             plugin.reloadConfig();
             messagesConfig.reload();
-
             otherDropsConfig.reload();
             otherFishingConfig.reload();
+            otherBlocksConfig.reload();
 
             sender.sendMessage(messageUtils.getMessage("reload-success"));
         } catch (Exception e) {

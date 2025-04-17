@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="OtherDrops:jar" />
+      <artifact name="OtherCore:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,14 +10,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a38e9a02-baa4-4290-b891-cd332cb6bcb4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherBlocksCommandManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/GiveToolCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherBlocksConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/listeners/BlockListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/otherblocks.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/OtherDrops_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/OtherCore_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OtherDrops.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OtherCore.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/OtherCore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherArmorCommandManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherDropsCommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/OtherDropsCommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/GiveArmorCommand.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/ReloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/commands/subcommands/ReloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherDropsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherDropsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherFishingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherFishingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/reloadx/config/OtherArmorConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/otherarmors.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SCore-5.25.2.9.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/reloadx/OtherCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/OtherArmorCommandManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/commands/subcommands/GiveArmorCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/reloadx/config/OtherArmorConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/otherarmors.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +83,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/MinecraftTodo/Plugins/OtherDrops/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/MinecraftTodo/Plugins/OtherCore&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
