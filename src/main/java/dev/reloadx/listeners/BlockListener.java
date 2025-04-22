@@ -70,7 +70,7 @@ public class BlockListener implements Listener {
                 }
             });
 
-            block.setType(Material.AIR);
+            //block.setType(Material.AIR);
             break;
         }
     }

@@ -2,7 +2,7 @@ special_tools:
   pickaxe:
     item: DIAMOND_PICKAXE
     display_name: "#33FF57Diamond Pickaxe"
-    blocks:  # Ahora es una lista de bloques
+    blocks:
       - STONE
       - ANDESITE
     drops:
@@ -16,7 +16,7 @@ special_tools:
   axe:
     item: DIAMOND_AXE
     display_name: "#FF5733Diamond Axe"
-    blocks:  # Lista de bloques
+    blocks:
       - OAK_LOG
       - SPRUCE_LOG
     drops:
@@ -30,12 +30,12 @@ special_tools:
   executable_item:
     item: DIAMOND_SWORD
     display_name: "#FF33CCEpic Sword"
-    blocks:  # Lista de bloques
+    blocks:
       - GRASS_BLOCK
     drops:
-      - item: "EI_armorpiece1_v1_8"  # El nombre del item en ExecutableItems
+      - item: "EI_armorpiece1_v1_8"
         chance: 100.0
-        display_name: "#FF33CCEpic Sword"
+        display_name: "EI_armorpiece1_v1_8"
         lore:
           - "&7A powerful sword from ExecutableItems"
         quantity: 1
@@ -43,7 +43,7 @@ special_tools:
   mob_spawn:
     item: DIAMOND_SHOVEL
     display_name: "#FF5733Summoner Shovel"
-    blocks:  # Lista de bloques
+    blocks:
       - SAND
     drops:
       - mob: SQUID
